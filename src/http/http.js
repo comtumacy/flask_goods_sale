@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axIos from 'axios'
 
-axios.interceptors.response.use(response => {
+axIos.interceptors.response.use(response => {
   return response
 }, error => {
+  console.log(error.response)
   return error.response
 })
