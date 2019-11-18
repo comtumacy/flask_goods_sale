@@ -21,29 +21,15 @@
 export default {
   name: 'shopIndexHeader',
   components: {},
-  props: [],
+  props: ['width'],
   created () {
-    this.getLength()
   },
   data () {
-    return {
-      width: 0
-    }
+    return {}
   },
   computed: {},
   watch: {},
   methods: {
-    // 获取浏览器长宽，更改浏览器两边的长宽
-    getLength () {
-      let widthNow = document.documentElement.clientWidth
-      let width
-      if (widthNow < 1200) {
-        width = 0
-      } else {
-        width = widthNow - 1200
-      }
-      this.width = width
-    },
     // 进入登录界面
     goToLogin () {
       this.$router.push('/login')
@@ -54,11 +40,6 @@ export default {
     }
   },
   mounted () {
-    // 实时获取、更改浏览器长宽
-    window.onresize = () => {
-      this.getLength()
-      console.log(this.width)
-    }
   },
   updated () {
   }
@@ -67,7 +48,7 @@ export default {
 
 <style lang="stylus">
 .shopIndexHeader
-  position fixed
+  position absolute
   top 0
   left 0
   right 0

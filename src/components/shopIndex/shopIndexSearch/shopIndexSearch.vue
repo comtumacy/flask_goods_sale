@@ -14,16 +14,16 @@
                 <el-option label="闲置书籍" value="闲置书籍"></el-option>
                 <el-option label="闲置手机" value="闲置手机"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <el-button slot="append" icon="el-icon-search" v-bind:style="{'padding': '9px 17px 9px 17px'}"></el-button>
             </el-input>
           </div>
           <div>
             <span id="hotSearch">热搜：</span>
-            <el-button type="text" v-bind:style="{'margin-left': '10px'}">轻小说</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px'}">官场</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px'}">星座/血型/塔罗</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px'}">华为</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px'}">OPPO</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '10px', 'color': 'rgb(150,150,150)'}">轻小说</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">官场</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">星座/血型/塔罗</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">华为</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">OPPO</el-button>
           </div>
         </el-col>
         <el-col>
@@ -38,14 +38,12 @@
 export default {
   name: 'shopIndexSearch',
   components: {},
-  props: [],
+  props: ['width'],
   created () {
-    this.getLength()
     this.getLogo()
   },
   data () {
     return {
-      width: 0,
       input: '',
       select: ''
     }
@@ -53,17 +51,6 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    // 获取浏览器长宽，更改浏览器两边的长宽
-    getLength () {
-      let widthNow = document.documentElement.clientWidth
-      let width
-      if (widthNow < 1200) {
-        width = 0
-      } else {
-        width = widthNow - 1200
-      }
-      this.width = width
-    },
     // 获取LOGO
     getLogo () {
       return require('../../../assets/logo.png')
@@ -74,11 +61,6 @@ export default {
     }
   },
   mounted () {
-    // 实时获取、更改浏览器长宽
-    window.onresize = () => {
-      this.getLength()
-      console.log(this.width)
-    }
   },
   updated () {
   },
@@ -91,7 +73,7 @@ export default {
 
 <style lang="stylus">
 .shopIndexSearch
-  position fixed
+  position absolute
   top 50px
   left 0
   right 0
@@ -105,6 +87,23 @@ export default {
     #shopIndexSearchInput
       margin-left 100px
       width 600px
+      .input-with-select
+        .el-input-group__prepend
+          width 70px
+          border 2px solid rgb(180,181,62)
+          border-right 0
+        .el-input__inner
+          border 2px solid rgb(180,181,62)
+          border-left 0
+          border-right 0
+        .el-input-group__append
+          border 2px solid rgb(180,181,62)
+          .el-button
+            background-color rgb(180,181,62)
+            border-radius 0
+            > i
+              font-size 20px
+              color white
     #shopIndexSearchPhoto
       margin-left 20px
       width 120px
@@ -113,4 +112,5 @@ export default {
       line-height 1
       font-size 14px
       font-weight 500
+      color rgb(150,150,150)
 </style>

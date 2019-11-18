@@ -6,6 +6,9 @@ import VueRouter from 'vue-router'
 // 以下为导入src文件夹下的vue组件
 // shopIndex
 import shopIndex from './src/components/shopIndex/shopIndex'
+import shopIndexChildIndex from './src/components/shopIndex/shopIndexChild/shopIndexChildIndex'
+import shopBook from './src/components/shopIndex/shopBook/shopBook'
+import shopPhone from './src/components/shopIndex/shopPhone/shopPhone'
 // login
 import login from './src/components/login/login'
 // register
@@ -25,7 +28,26 @@ const routes = [
   // 主页
   {
     path: '/shopIndex',
-    component: shopIndex
+    component: shopIndex,
+    redirect: '/shopIndex/shopIndexChildIndex',
+    // 嵌套路由
+    children: [
+      {
+        // 商品子主页
+        path: 'shopIndexChildIndex',
+        component: shopIndexChildIndex
+      },
+      {
+        // 书籍页面
+        path: 'shopBook',
+        component: shopBook
+      },
+      {
+        // 书籍页面
+        path: 'shopPhone',
+        component: shopPhone
+      }
+    ]
   },
   // 登录
   {

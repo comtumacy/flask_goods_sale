@@ -15,7 +15,7 @@ import store from './store/store'
 // 导入全局axIos拦截器
 import './http/http'
 // 按需导入Element UI组件库包
-import { Icon, Button, Row, Col, Divider, Container, Aside, Main, Form, FormItem, Input, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Notification, Select, Option, OptionGroup } from 'element-ui'
+import { Icon, Button, Row, Col, Divider, Container, Aside, Main, Form, FormItem, Input, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Notification, Select, Option, OptionGroup, Menu, Submenu, MenuItem, MenuItemGroup, Carousel, CarouselItem, Breadcrumb, BreadcrumbItem } from 'element-ui'
 
 Vue.config.productionTip = false
 // 定义全局变量axIos
@@ -45,6 +45,14 @@ Vue.use(CheckboxGroup)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(OptionGroup)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 
 new Vue({
   router,
