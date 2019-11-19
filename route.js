@@ -9,10 +9,13 @@ import shopIndex from './src/components/shopIndex/shopIndex'
 import shopIndexChildIndex from './src/components/shopIndex/shopIndexChild/shopIndexChildIndex'
 import shopBook from './src/components/shopIndex/shopBook/shopBook'
 import shopPhone from './src/components/shopIndex/shopPhone/shopPhone'
+import goodIndex from './src/components/shopIndex/good/goodIndex'
 // login
 import login from './src/components/login/login'
 // register
 import register from './src/components/register/register'
+// 404
+import notFound from './src/components/404/404'
 
 // 挂载router在Vue上
 Vue.use(VueRouter)
@@ -46,6 +49,12 @@ const routes = [
         // 书籍页面
         path: 'shopPhone',
         component: shopPhone
+      },
+      {
+        // 商品详情页面
+        path: 'good/:id',
+        component: goodIndex,
+        props: true
       }
     ]
   },
@@ -58,6 +67,11 @@ const routes = [
   {
     path: '/register',
     component: register
+  },
+  // 404
+  {
+    path: '*',
+    component: notFound
   }
 ]
 

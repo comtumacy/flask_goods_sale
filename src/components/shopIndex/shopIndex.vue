@@ -2,8 +2,19 @@
   <div class="shopIndex">
     <shopIndexHeader v-bind:width="width"></shopIndexHeader>
     <shopIndexSearch v-bind:width="width"></shopIndexSearch>
-    <shopIndexNavigation v-bind:width="width" v-bind:widthNow="widthNow" v-bind:activeIndex="sign"></shopIndexNavigation>
-    <router-view  v-bind:width="width" v-bind:widthNow="widthNow" @signEdit="setSign"></router-view>
+    <shopIndexNavigation
+      v-bind:width="width"
+      v-bind:widthNow="widthNow"
+      v-bind:activeIndex="sign"
+      @selectNavigation1="selectNavigation1"
+      @selectNavigation2="selectNavigation2"></shopIndexNavigation>
+    <router-view
+      v-bind:width="width"
+      v-bind:widthNow="widthNow"
+      v-bind:selectNavigationSign1="selectNavigationSign1"
+      v-bind:selectNavigationSign2="selectNavigationSign2"
+      @signEdit="setSign">
+    </router-view>
   </div>
 </template>
 
@@ -26,7 +37,9 @@ export default {
     return {
       width: 0,
       widthNow: 0,
-      sign: '2'
+      sign: '2',
+      selectNavigationSign1: '',
+      selectNavigationSign2: ''
     }
   },
   computed: {},
@@ -47,13 +60,20 @@ export default {
     // 设置标题信号值
     setSign (val) {
       this.sign = val
+    },
+    // 最外层导航栏选择回调1
+    selectNavigation1 (val) {
+      this.selectNavigationSign1 = val
+    },
+    // 最外层导航栏选择回调2
+    selectNavigation2 (val) {
+      this.selectNavigationSign2 = val
     }
   },
   mounted () {
     // 实时获取、更改浏览器长宽
     window.onresize = () => {
       this.getLength()
-      console.log(this.width)
     }
   },
   updated () {

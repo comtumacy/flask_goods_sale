@@ -247,7 +247,6 @@ export default {
         url: 'https://yitongli.cn/goodsApi/public/public_get_goods',
         data: { 'type': 1 }
       }).then(res => {
-        console.log(res)
         this.goodIds = res.data.goodIds
         this.goodsContent = res.data.goodsContent
       })
@@ -259,7 +258,6 @@ export default {
         url: 'https://yitongli.cn/goodsApi/public/public_get_goods',
         data: { 'type': 2 }
       }).then(res => {
-        console.log(res)
         this.goodIds2 = res.data.goodIds
         this.goodsContent2 = res.data.goodsContent
       })
