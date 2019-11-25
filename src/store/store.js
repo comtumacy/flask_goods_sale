@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 const state = {
   token: '',
-  goodType: '',
+  good: '',
   className: '',
   classNo: ''
 }
@@ -35,16 +35,16 @@ const getters = {
     //   return state.token
     // }
   },
-  goodType_getters (state) {
-    if (state.goodType === '') {
-      if (sessionStorage.getItem('goodType') === '') {
-        return '2'
+  good_getters (state) {
+    if (state.good === '') {
+      if (sessionStorage.getItem('good') === '') {
+        return ''
       } else {
-        state.goodType = sessionStorage.getItem('goodType')
-        return sessionStorage.getItem('goodType')
+        state.good = sessionStorage.getItem('good')
+        return sessionStorage.getItem('good')
       }
     } else {
-      return state.goodType
+      return state.good
     }
   },
   className_getters (state) {
@@ -62,9 +62,9 @@ const mutations = {
     sessionStorage.setItem('token', token)
     state.token = token
   },
-  goodType_mutations (state, goodType) {
-    sessionStorage.setItem('goodType', goodType)
-    state.goodType = goodType
+  good_mutations (state, good) {
+    sessionStorage.setItem('good', good)
+    state.good = good
   },
   className_mutations (state, className) {
     sessionStorage.setItem('className', className)
@@ -80,8 +80,8 @@ const actions = {
   token_actions (context, token) {
     context.commit('token_mutations', token)
   },
-  goodType_actions (context, goodType) {
-    context.commit('goodType_mutations', goodType)
+  good_actions (context, good) {
+    context.commit('good_mutations', good)
   },
   className_actions (context, className) {
     context.commit('className_mutations', className)

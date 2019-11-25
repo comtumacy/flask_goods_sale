@@ -319,7 +319,9 @@ export default {
     },
     // 获取点击事件
     enterShopPage (val) {
-      console.log(val)
+      let goodId = this.goodsContent[val].good_id
+      console.log(this.goodsContent[val])
+      this.$router.push('/shopIndex/good/' + goodId + '&' + 2)
     }
   },
   mounted () {

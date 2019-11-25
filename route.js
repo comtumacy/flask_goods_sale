@@ -14,6 +14,8 @@ import goodIndex from './src/components/shopIndex/good/goodIndex'
 import login from './src/components/login/login'
 // register
 import register from './src/components/register/register'
+// admin
+import admin from './src/components/admin/adminIndex'
 // 404
 import notFound from './src/components/404/404'
 
@@ -67,6 +69,11 @@ const routes = [
   {
     path: '/register',
     component: register
+  },
+  // 后台
+  {
+    path: '/admin',
+    component: admin
   },
   // 404
   {

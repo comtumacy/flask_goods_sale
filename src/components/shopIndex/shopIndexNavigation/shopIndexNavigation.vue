@@ -73,11 +73,19 @@ export default {
   methods: {
     // 回调点击事件1
     handleSelect1 (val) {
+      let url = document.location.toString()
+      let arrUrl = url.split('//')
+      let start = arrUrl[1].indexOf('/')
+      let relUrl = arrUrl[1].substring(start)
       if (val !== '手机') {
-        this.$nextTick(() => {
-          this.$emit('selectNavigation1', val)
-        })
+        if (relUrl !== '/#/shopIndex/shopBook') {
+          this.$router.push('/shopIndex/shopBook')
+        }
+        this.$emit('selectNavigation1', val)
       } else {
+        if (relUrl !== '/#/shopIndex/shopPhone') {
+          this.$router.push('/shopIndex/shopPhone')
+        }
         this.$emit('selectNavigation2', val)
       }
     },

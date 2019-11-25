@@ -23,9 +23,9 @@ export default {
     },
     goToIndex () {
       this.$message.error('即将跳转回首页')
-      setTimeout(() => {
-        this.$router.push('/shopIndex/shopIndexChildIndex')
-      }, 3000)
+      // setTimeout(() => {
+      //   this.$router.push('/shopIndex/shopIndexChildIndex')
+      // }, 3000)
     }
   },
   mounted () {
@@ -41,8 +41,12 @@ export default {
 
 <style lang="stylus">
 #notFound
+  position fixed
   top 0
   left 0
   right 0
   overflow hidden
+  > img
+    width 100%
+    height 100%
 </style>

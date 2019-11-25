@@ -320,17 +320,7 @@ export default {
     // 获取点击事件
     enterShopPage (val) {
       let goodId = this.goodsContent[val].good_id
-      this.$axios({
-        method: 'post',
-        url: 'https://yitongli.cn/goodsApi/public/public_get_goods_id',
-        data: {
-          'type': 1,
-          'good_id': goodId
-        }
-      }).then(res => {
-        this.$router.push('/shopIndex/good/' + goodId)
-        console.log(res)
-      })
+      this.$router.push('/shopIndex/good/' + goodId + '&' + 1)
     }
   },
   mounted () {
