@@ -299,7 +299,7 @@ export default {
       }
       this.$axios({
         method: 'post',
-        url: 'https://yitongli.cn/goodsApi/public/public_get_goods_detailed',
+        url: 'http://139.155.33.105/goodsApi/public/public_get_goods_detailed',
         data: {
           'type': type,
           'content': this.selectNow,

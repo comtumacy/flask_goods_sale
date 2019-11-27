@@ -5,17 +5,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  token: '',
-  good: '',
-  className: '',
-  classNo: ''
+  token: 'null',
+  username: '',
+  goods: []
 }
 
 const getters = {
   token_getters (state) {
-    if (state.token === '') {
+    if (state.token === 'null') {
       if (sessionStorage.getItem('token') === '') {
-        return ''
+        return 'null'
       } else {
         state.token = sessionStorage.getItem('token')
         return sessionStorage.getItem('token')
@@ -23,37 +22,30 @@ const getters = {
     } else {
       return state.token
     }
-    // if (!state.isLogin) {
-    //   if (sessionStorage.getItem('isLogin')) {
-    //     state.isLogin = sessionStorage.getItem('isLogin')
-    //     state.token = sessionStorage.getItem('token')
-    //     return state.token
-    //   } else {
-    //     return state.token
-    //   }
-    // } else {
-    //   return state.token
-    // }
   },
-  good_getters (state) {
-    if (state.good === '') {
-      if (sessionStorage.getItem('good') === '') {
-        return ''
+  username_getters (state) {
+    if (state.username === '') {
+      if (sessionStorage.getItem('username') === '') {
+        return '无'
       } else {
-        state.good = sessionStorage.getItem('good')
-        return sessionStorage.getItem('good')
+        state.username = sessionStorage.getItem('username')
+        return sessionStorage.getItem('username')
       }
     } else {
-      return state.good
+      return state.username
     }
   },
-  className_getters (state) {
-    state.className = sessionStorage.getItem('className')
-    return state.className
-  },
-  classNo_getters (state) {
-    state.classNo = sessionStorage.getItem('classNo')
-    return state.classNo
+  goods_getters (state) {
+    if (state.goods.length === 0) {
+      if (sessionStorage.getItem('goods') === null) {
+        return state.goods
+      } else {
+        state.goods = JSON.parse(sessionStorage.getItem('goods'))
+        return state.goods
+      }
+    } else {
+      return state.goods
+    }
   }
 }
 
@@ -62,17 +54,30 @@ const mutations = {
     sessionStorage.setItem('token', token)
     state.token = token
   },
-  good_mutations (state, good) {
-    sessionStorage.setItem('good', good)
-    state.good = good
+  username_mutations (state, username) {
+    sessionStorage.setItem('username', username)
+    state.username = username
   },
-  className_mutations (state, className) {
-    sessionStorage.setItem('className', className)
-    state.className = className
+  goods_mutations (state, goods) {
+    if (state.goods.length === 0) {
+      if (sessionStorage.getItem('goods') === null) {
+        state.goods.push(goods)
+        sessionStorage.setItem('goods', JSON.stringify(state.goods))
+      } else {
+        state.goods = JSON.parse(sessionStorage.getItem('goods'))
+        state.goods.push(goods)
+        sessionStorage.setItem('goods', JSON.stringify(state.goods))
+      }
+    } else {
+      state.goods.push(goods)
+      sessionStorage.setItem('goods', JSON.stringify(state.goods))
+    }
   },
-  classNo_mutations (state, classNo) {
-    sessionStorage.setItem('classNo', classNo)
-    state.classNo = classNo
+  goods_type_mutations (state, goodsType) {
+    if (goodsType === 1) {
+      state.goods = []
+      sessionStorage.removeItem('goods')
+    }
   }
 }
 
@@ -80,14 +85,14 @@ const actions = {
   token_actions (context, token) {
     context.commit('token_mutations', token)
   },
-  good_actions (context, good) {
-    context.commit('good_mutations', good)
+  username_actions (context, username) {
+    context.commit('username_mutations', username)
   },
-  className_actions (context, className) {
-    context.commit('className_mutations', className)
+  goods_actions (context, goods) {
+    context.commit('goods_mutations', goods)
   },
-  classNo_actions (context, classNo) {
-    context.commit('classNo_mutations', classNo)
+  goods_type_actions (context, goodsType) {
+    context.commit('goods_type_mutations', goodsType)
   }
 }
 

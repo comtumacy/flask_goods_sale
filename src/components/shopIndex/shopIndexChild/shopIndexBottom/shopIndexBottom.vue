@@ -18,30 +18,30 @@
           </el-col>
         </el-row>
         <el-row v-bind:style="{'position': 'absolute', 'top': '65px'}">
-          <el-col class="shopIndexBottomTitle4">
+          <el-col class="shopIndexBottomTitle4" v-on:click.native="goToAdmin()">
             <span>买家登录</span>
           </el-col>
-          <el-col class="shopIndexBottomTitle5">
+          <el-col class="shopIndexBottomTitle5" v-on:click.native="goToAdmin()">
             <span>卖家登录</span>
           </el-col>
-          <el-col class="shopIndexBottomTitle6">
+          <el-col class="shopIndexBottomTitle6" v-on:click.native="goToAdmin()">
             <span>后台登录</span>
           </el-col>
         </el-row>
         <el-row v-bind:style="{'position': 'absolute', 'top': '95px'}">
-          <el-col class="shopIndexBottomTitle4">
+          <el-col class="shopIndexBottomTitle4" v-on:click.native="goToAdmin()">
             <span>订单管理</span>
           </el-col>
-          <el-col class="shopIndexBottomTitle5">
+          <el-col class="shopIndexBottomTitle5" v-on:click.native="goToAdmin()">
             <span>库存管理</span>
           </el-col>
-          <el-col class="shopIndexBottomTitle6">
+          <el-col class="shopIndexBottomTitle6" v-on:click.native="contact()">
             <span>联系我们</span>
           </el-col>
         </el-row>
         <el-row v-bind:style="{'position': 'absolute', 'top': '125px'}">
-          <el-col class="shopIndexBottomTitle4">
-            <span>我买到的</span>
+          <el-col class="shopIndexBottomTitle4" v-on:click.native="goToModify()">
+            <span>账号修改</span>
           </el-col>
         </el-row>
       </div>
@@ -68,6 +68,22 @@ export default {
     // 获取LOGO图片
     getLogoPhoto () {
       return require('../../../../assets/logo.png')
+    },
+    // 联系我们
+    contact () {
+      this.$notify({
+        title: '联系我们',
+        message: '请联系网站管理员。',
+        duration: 4500
+      })
+    },
+    // 后台登录
+    goToAdmin () {
+      this.$router.push('/admin')
+    },
+    // 进入账号修改
+    goToModify () {
+      this.$router.push('/admin/modifyUser')
     }
   },
   mounted () {

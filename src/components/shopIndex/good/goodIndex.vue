@@ -53,7 +53,7 @@
           </div>
         </el-row>
         <el-row>
-          <el-button type="success" class="buyButton">立即购买</el-button>
+          <el-button type="success" class="buyButton" v-on:click="goToBuy()">立即购买</el-button>
         </el-row>
       </el-col>
     </el-row>
@@ -152,7 +152,7 @@ export default {
     this.type = this.id.substr(-1, 1)
     this.$axios({
       method: 'post',
-      url: 'https://yitongli.cn/goodsApi/public/public_get_goods_id',
+      url: 'http://139.155.33.105/goodsApi/public/public_get_goods_id',
       data: {
         'type': parseInt(this.type),
         'good_id': this.ID
@@ -172,7 +172,8 @@ export default {
       enterNumber: 1,
       activeIndex: '商品详情',
       selectNow: '商品详情',
-      RateValue: 0
+      RateValue: 0,
+      number: 1
     }
   },
   computed: {
@@ -434,12 +435,35 @@ export default {
   methods: {
     // 选择购买数量
     selectNumber (val) {
-      console.log(val)
+      this.number = val
     },
     // 回调选择的点菜单栏
     handleSelect (key) {
-      console.log(key)
       this.selectNow = key
+    },
+    // 去购买
+    goToBuy () {
+      if (this.$store.getters.token_getters === 'null') {
+        this.$message.error('请先登录！')
+      } else {
+        let good = {
+          'ID': this.ID,
+          'number': this.number,
+          'type': this.type
+        }
+        this.$store.dispatch('goods_actions', good)
+        this.$message.success(`商品  《${this.getTitle}》  加入购物车成功`)
+        setTimeout(() => {
+          this.$confirm(`是否进入购物车进行结算?`, '提示', {
+            confirmButtonText: '进入',
+            cancelButtonText: '再想想',
+            type: 'warning'
+          }).then(() => {
+            this.$router.push('/admin/shoppingCart')
+          })
+        }, 500)
+        // console.log(this.$store.getters.goods_getters)
+      }
     }
   },
   mounted () {

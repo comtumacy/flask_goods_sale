@@ -2,7 +2,7 @@ import Vue from 'vue'
 // 导入路由包
 import VueRouter from 'vue-router'
 // 导入vuex状态管理器
-// import store from './src/store/store'
+import store from './src/store/store'
 // 以下为导入src文件夹下的vue组件
 // shopIndex
 import shopIndex from './src/components/shopIndex/shopIndex'
@@ -16,6 +16,9 @@ import login from './src/components/login/login'
 import register from './src/components/register/register'
 // admin
 import admin from './src/components/admin/adminIndex'
+import favorites from './src/components/admin/favorites/favorites'
+import modifyUser from './src/components/admin/modifyUser/modifyUser'
+import shoppingCart from './src/components/admin/shoppingCart/shoppingCart'
 // 404
 import notFound from './src/components/404/404'
 
@@ -73,7 +76,26 @@ const routes = [
   // 后台
   {
     path: '/admin',
-    component: admin
+    component: admin,
+    redirect: '/admin/favorites',
+    // 嵌套路由
+    children: [
+      {
+        // 收藏页面
+        path: 'favorites',
+        component: favorites
+      },
+      {
+        // 账号修改
+        path: 'modifyUser',
+        component: modifyUser
+      },
+      {
+        // 购物车
+        path: 'shoppingCart',
+        component: shoppingCart
+      }
+    ]
   },
   // 404
   {
@@ -85,5 +107,24 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+const path = {
+  '/admin/favorites': 'path',
+  '/admin/modifyUser': 'path',
+  '/admin/shoppingCart': 'path'
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.path in path) {
+    if (store.getters.token_getters !== 'null') {
+      next()
+    } else if (store.getters.token_getters === 'null') {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
+
 // 导出router对象
 export default router

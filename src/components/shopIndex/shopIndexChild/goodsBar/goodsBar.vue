@@ -10,7 +10,7 @@
           <span class="goodsHeaders1text2">热卖</span>
           <span class="goodsHeaders1text3">Book sale</span>
         </el-col>
-        <el-col class="lookMore1">
+        <el-col class="lookMore1" v-on:click.native="goToGoodDetailed(1)">
           <el-button type="text">查看更多</el-button>
           <span class="el-icon-arrow-right"></span>
         </el-col>
@@ -88,7 +88,7 @@
           <span class="goodsHeaders1text2">热销</span>
           <span class="goodsHeaders1text3">Hot selling of mobile phones</span>
         </el-col>
-        <el-col class="lookMore1">
+        <el-col class="lookMore1" v-on:click.native="goToGoodDetailed(2)">
           <el-button type="text">查看更多</el-button>
           <span class="el-icon-arrow-right"></span>
         </el-col>
@@ -244,7 +244,7 @@ export default {
     getGoods1 () {
       this.$axios({
         method: 'post',
-        url: 'https://yitongli.cn/goodsApi/public/public_get_goods',
+        url: 'http://139.155.33.105/goodsApi/public/public_get_goods',
         data: { 'type': 1 }
       }).then(res => {
         this.goodIds = res.data.goodIds
@@ -255,7 +255,7 @@ export default {
     getGoods2 () {
       this.$axios({
         method: 'post',
-        url: 'https://yitongli.cn/goodsApi/public/public_get_goods',
+        url: 'http://139.155.33.105/goodsApi/public/public_get_goods',
         data: { 'type': 2 }
       }).then(res => {
         this.goodIds2 = res.data.goodIds
@@ -265,6 +265,14 @@ export default {
     // 获取宣传图片
     getPropagandaPhoto (val) {
       return require(`./goods${val}.jpg`)
+    },
+    // 进入商品详情页
+    goToGoodDetailed (val) {
+      if (val === 1) {
+        this.$router.push('/shopIndex/shopBook')
+      } else {
+        this.$router.push('/shopIndex/shopPhone')
+      }
     }
   },
   mounted () {

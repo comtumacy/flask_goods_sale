@@ -8,7 +8,7 @@
         <el-col class="adminHeaderMiddle" v-bind:style="{'width': (widthNow - 300) + 'px'}">
           <span class="adminHeaderMiddleText">你好：{{ username }}</span>
         </el-col>
-        <el-col class="adminHeaderRight">
+        <el-col class="adminHeaderRight" v-on:click.native="outLogin()">
           <span class="adminHeaderRightOut">退出登录</span>
         </el-col>
       </el-row>
@@ -27,8 +27,8 @@
               <span>个人中心</span>
             </template>
             <el-menu-item index="1-1">商品收藏</el-menu-item>
-            <el-menu-item index="1-2">密码修改</el-menu-item>
-            <el-menu-item index="1-3">账号修改</el-menu-item>
+            <el-menu-item index="1-2">信息修改</el-menu-item>
+            <el-menu-item index="1-3">购物车</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -48,7 +48,7 @@
           </el-submenu>
         </el-menu>
       </el-row>
-      <router-view></router-view>
+      <router-view v-bind:widthNow="widthNow"></router-view>
     </div>
 </template>
 
@@ -59,13 +59,25 @@ export default {
   props: [],
   created () {
     this.getLength()
+    this.username = this.$store.getters.username_getters
+    let url = document.location.toString()
+    let arrUrl = url.split('//')
+    let start = arrUrl[1].indexOf('/')
+    let relUrl = arrUrl[1].substring(start)
+    if (relUrl === '/#/admin/favorites') {
+      this.active = '1-1'
+    } else if (relUrl === '/#/admin/modifyUser') {
+      this.active = '1-2'
+    } else if (relUrl === '/#/admin/shoppingCart') {
+      this.active = '1-3'
+    }
   },
   data () {
     return {
       width: 0,
       widthNow: 0,
       heightNow: 0,
-      username: 'seller0',
+      username: '',
       active: '1-1'
     }
   },
@@ -90,9 +102,24 @@ export default {
     goToIndex () {
       this.$router.push('/')
     },
+    // 退出登录
+    outLogin () {
+      this.$store.dispatch('token_actions', 'null')
+      this.$router.push('/')
+    },
     // 点击事件
     selectMenu (index) {
-      console.log(index)
+      let url = document.location.toString()
+      let arrUrl = url.split('//')
+      let start = arrUrl[1].indexOf('/')
+      let relUrl = arrUrl[1].substring(start)
+      if (index === '1-1' && relUrl !== '/#/admin/favorites') {
+        this.$router.push('/admin/favorites')
+      } else if (index === '1-2' && relUrl !== '/#/admin/modifyUser') {
+        this.$router.push('/admin/modifyUser')
+      } else if (index === '1-3' && relUrl !== '/#/admin/shoppingCart') {
+        this.$router.push('/admin/shoppingCart')
+      }
     }
   },
   mounted () {
@@ -170,4 +197,8 @@ export default {
     overflow hidden
     .adminIndexMenu
       width 200px
+      .el-submenu
+        .el-submenu__title
+          .el-submenu__icon-arrow
+            color white
 </style>

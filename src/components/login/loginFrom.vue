@@ -75,7 +75,7 @@ export default {
     getCaptchaImg () {
       this.$axios({
         method: 'post',
-        url: 'https://yitongli.cn/goodsApi/user/verification_code'
+        url: 'http://139.155.33.105/goodsApi/user/verification_code'
       }).then(res => {
         this.ctoken = res.headers.ctoken
         this.captchaImg = res.data.base64
@@ -95,7 +95,7 @@ export default {
           if (valid) {
             this.$axios({
               method: 'post',
-              url: 'https://yitongli.cn/goodsApi/user/login',
+              url: 'http://139.155.33.105/goodsApi/user/login',
               data: this.ruleForm,
               headers: {
                 ctoken: this.ctoken,
@@ -104,7 +104,13 @@ export default {
             })
               .then(res => {
                 if (res.status === 200) {
-                  this.$message.success('登录成功')
+                  this.$message.success('登录成功，即将返回主页')
+                  console.log(res.headers.token)
+                  this.$store.dispatch('token_actions', res.headers.token)
+                  this.$store.dispatch('username_actions', res.headers.username)
+                  setTimeout(() => {
+                    this.$router.push('/')
+                  }, 1000)
                 } else {
                   this.$message.error(res.data.info)
                 }
@@ -130,6 +136,12 @@ export default {
     this.timer = setInterval(() => {
       this.refreshCaptchaImg()
     }, 30000)
+    document.onkeydown = () => {
+      let _key = window.event.keyCode
+      if (_key === 13) {
+        this.submitForm()
+      }
+    }
   },
   updated () {
   },

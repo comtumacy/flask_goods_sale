@@ -11,7 +11,7 @@
         </el-col>
         <el-divider direction="vertical"></el-divider>
         <el-col :span="8" id="shopIndexHeadersTitle4">
-          <el-button type="text" id="shopIndexHeadersButton4">我的个人中心</el-button>
+          <el-button type="text" id="shopIndexHeadersButton4" v-on:click.native="goToAdmin()">我的个人中心</el-button>
         </el-col>
       </el-row>
     </div>
@@ -37,6 +37,10 @@ export default {
     // 进入注册界面
     goToRegister () {
       this.$router.push('/register')
+    },
+    // 后台登录
+    goToAdmin () {
+      this.$router.push('/admin')
     }
   },
   mounted () {

@@ -153,7 +153,7 @@ export default {
     getCaptchaImg () {
       this.$axios({
         method: 'post',
-        url: 'https://yitongli.cn/goodsApi/user/verification_code'
+        url: 'http://139.155.33.105/goodsApi/user/verification_code'
       }).then(res => {
         this.ctoken = res.headers.ctoken
         this.captchaImg = res.data.base64
@@ -181,7 +181,7 @@ export default {
           if (valid) {
             this.$axios({
               method: 'post',
-              url: 'https://yitongli.cn/goodsApi/user/register',
+              url: 'http://139.155.33.105/goodsApi/user/register',
               data: this.ruleForm,
               headers: {
                 ctoken: this.ctoken,
