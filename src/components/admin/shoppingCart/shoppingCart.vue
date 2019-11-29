@@ -26,7 +26,8 @@
               label="商品名称"
               header-align="center"
               align="center"
-              :resizable="false">
+              :resizable="false"
+              :show-overflow-tooltip=true>
             </el-table-column>
             <el-table-column
               prop="price"
@@ -196,6 +197,8 @@ export default {
         }
       }).then(res => {
         this.$message.success(res.data.info)
+        this.$store.dispatch('goods_type_actions', 1)
+        this.getContent()
       }).catch(() => {
         this.$message.error('获取失败，请检查你的网络连接')
       })

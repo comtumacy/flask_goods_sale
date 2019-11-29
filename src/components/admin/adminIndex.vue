@@ -43,12 +43,20 @@
               <i class="icon-pacman" v-bind:style="{'margin-left': '5px', 'margin-right': '5px', 'color': 'white'}"></i>
               <span>评论管理</span>
             </template>
-            <el-menu-item index="3-1">评论查看</el-menu-item>
-            <el-menu-item index="3-2">评论修改</el-menu-item>
+            <el-menu-item index="3-1">评论添加</el-menu-item>
+            <el-menu-item index="3-2">评论查看</el-menu-item>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="icon-database" v-bind:style="{'margin-left': '5px', 'margin-right': '5px', 'color': 'white'}"></i>
+              <span>商品管理</span>
+            </template>
+            <el-menu-item index="4-1">商品添加</el-menu-item>
+            <el-menu-item index="4-2">库存查看</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-row>
-      <router-view v-bind:widthNow="widthNow"></router-view>
+      <router-view v-bind:widthNow="widthNow" v-bind:heightNow="heightNow"></router-view>
     </div>
 </template>
 
@@ -70,6 +78,16 @@ export default {
       this.active = '1-2'
     } else if (relUrl === '/#/admin/shoppingCart') {
       this.active = '1-3'
+    } else if (relUrl === '/#/admin/lookOrder') {
+      this.active = '2-1'
+    } else if (relUrl === '/#/admin/modifyOrder') {
+      this.active = '2-2'
+    } else if (relUrl === '/#/admin/addRating') {
+      this.active = '3-1'
+    } else if (relUrl === '/#/admin/lookRating') {
+      this.active = '3-2'
+    } else if (relUrl === '/#/admin/addGood') {
+      this.active = '4-1'
     }
   },
   data () {
@@ -119,6 +137,16 @@ export default {
         this.$router.push('/admin/modifyUser')
       } else if (index === '1-3' && relUrl !== '/#/admin/shoppingCart') {
         this.$router.push('/admin/shoppingCart')
+      } else if (index === '2-1' && relUrl !== '/#/admin/lookOrder') {
+        this.$router.push('/admin/lookOrder')
+      } else if (index === '2-2' && relUrl !== '/#/admin/modifyOrder') {
+        this.$router.push('/admin/modifyOrder')
+      } else if (index === '3-1' && relUrl !== '/#/admin/addRating') {
+        this.$router.push('/admin/addRating')
+      } else if (index === '3-2' && relUrl !== '/#/admin/lookRating') {
+        this.$router.push('/admin/lookRating')
+      } else if (index === '4-1' && relUrl !== '/#/admin/addGood') {
+        this.$router.push('/admin/addGood')
       }
     }
   },

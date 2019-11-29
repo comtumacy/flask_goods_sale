@@ -32,7 +32,8 @@
             label="商品名称"
             header-align="center"
             align="center"
-            :resizable="false">
+            :resizable="false"
+            :show-overflow-tooltip=true>
           </el-table-column>
           <el-table-column
             prop="price"

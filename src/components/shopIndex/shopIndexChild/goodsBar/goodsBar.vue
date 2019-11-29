@@ -20,7 +20,7 @@
         <el-col class="PropagandaPhoto">
           <img :src="getPropagandaPhoto(1)" alt="">
         </el-col>
-        <el-col class="good1">
+        <el-col class="good1" v-on:click.native="goToGoodPage(0)">
           <img :src="getPhoto(0)" alt="">
           <br>
           <span class="goodName1">{{ getName(0) }}</span>
@@ -34,7 +34,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good2">
+        <el-col class="good2" v-on:click.native="goToGoodPage(1)">
           <img :src="getPhoto(1)" alt="">
           <br>
           <span class="goodName2">{{ getName(1) }}</span>
@@ -48,7 +48,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good3">
+        <el-col class="good3" v-on:click.native="goToGoodPage(2)">
           <img :src="getPhoto(2)" alt="">
           <br>
           <span class="goodName3">{{ getName(2) }}</span>
@@ -62,7 +62,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good4">
+        <el-col class="good4" v-on:click.native="goToGoodPage(3)">
           <img :src="getPhoto(3)" alt="">
           <br>
           <span class="goodName4">{{ getName(3) }}</span>
@@ -98,7 +98,7 @@
         <el-col class="PropagandaPhoto">
           <img :src="getPropagandaPhoto(2)" alt="">
         </el-col>
-        <el-col class="good1">
+        <el-col class="good1" v-on:click.native="goToGoodPage2(0)">
           <img :src="getPhoto2(0)" alt="">
           <br>
           <span class="goodName1">{{ getName2(0) }}</span>
@@ -112,7 +112,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good2">
+        <el-col class="good2" v-on:click.native="goToGoodPage2(1)">
           <img :src="getPhoto2(1)" alt="">
           <br>
           <span class="goodName2">{{ getName2(1) }}</span>
@@ -126,7 +126,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good3">
+        <el-col class="good3" v-on:click.native="goToGoodPage2(2)">
           <img :src="getPhoto2(2)" alt="">
           <br>
           <span class="goodName3">{{ getName2(2) }}</span>
@@ -140,7 +140,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col class="good4">
+        <el-col class="good4" v-on:click.native="goToGoodPage2(3)">
           <img :src="getPhoto2(3)" alt="">
           <br>
           <span class="goodName4">{{ getName2(3) }}</span>
@@ -266,13 +266,21 @@ export default {
     getPropagandaPhoto (val) {
       return require(`./goods${val}.jpg`)
     },
-    // 进入商品详情页
+    // 进入商品类别详情页
     goToGoodDetailed (val) {
       if (val === 1) {
         this.$router.push('/shopIndex/shopBook')
       } else {
         this.$router.push('/shopIndex/shopPhone')
       }
+    },
+    // 进入商品详情页
+    goToGoodPage (val) {
+      this.$router.push('/shopIndex/good/' + this.goodIds[val] + '&' + 1)
+    },
+    // 进入商品详情页
+    goToGoodPage2 (val) {
+      this.$router.push('/shopIndex/good/' + this.goodIds2[val] + '&' + 2)
     }
   },
   mounted () {

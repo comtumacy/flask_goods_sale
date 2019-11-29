@@ -13,7 +13,7 @@ const state = {
 const getters = {
   token_getters (state) {
     if (state.token === 'null') {
-      if (sessionStorage.getItem('token') === '') {
+      if (sessionStorage.getItem('token') === null) {
         return 'null'
       } else {
         state.token = sessionStorage.getItem('token')

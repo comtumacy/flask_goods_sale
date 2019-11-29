@@ -54,6 +54,7 @@
         </el-row>
         <el-row>
           <el-button type="success" class="buyButton" v-on:click="goToBuy()">立即购买</el-button>
+          <el-button type="danger" class="favoritesButton" v-on:click="addFavorites()">加入收藏</el-button>
         </el-row>
       </el-col>
     </el-row>
@@ -177,6 +178,16 @@ export default {
     }
   },
   computed: {
+    // 获取商品ID
+    getGoodID () {
+      return function (val) {
+        if (!this.data.goodsContent) {
+          return ''
+        } else {
+          return this.data.goodsContent[0].goodId
+        }
+      }
+    },
     // 获取图片
     getPhoto () {
       if (!this.data.goodsContent) {
@@ -464,6 +475,34 @@ export default {
         }, 500)
         // console.log(this.$store.getters.goods_getters)
       }
+    },
+    // 添加收藏
+    addFavorites () {
+      if (this.$store.getters.token_getters === 'null') {
+        this.$message.error('请先登录再收藏商品')
+      } else {
+        // getGoodID
+        // console.log()
+        this.$axios({
+          method: 'post',
+          url: 'http://139.155.33.105/goodsApi/buyer/add_favorites',
+          headers: {
+            'token': this.$store.getters.token_getters,
+            'Uname': this.$store.getters.username_getters
+          },
+          data: {
+            'type': parseInt(this.type),
+            'good_id': this.getGoodID()
+          }
+        }).then(res => {
+          console.log(res)
+          if (res.status === 200) {
+            this.$message.success(res.data.info)
+          } else {
+            this.$message.error(res.data.info)
+          }
+        })
+      }
     }
   },
   mounted () {
@@ -645,6 +684,12 @@ export default {
   .buyButton
     position absolute
     margin-left 15px
+    top 590px
+    left 450px
+    width 180px
+  .favoritesButton
+    position absolute
+    margin-left 225px
     top 590px
     left 450px
     width 180px

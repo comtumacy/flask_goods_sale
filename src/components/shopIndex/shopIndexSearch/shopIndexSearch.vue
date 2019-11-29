@@ -19,11 +19,8 @@
           </div>
           <div>
             <span id="hotSearch">热搜：</span>
-            <el-button type="text" v-bind:style="{'margin-left': '10px', 'color': 'rgb(150,150,150)'}">轻小说</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">官场</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">星座/血型/塔罗</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">华为</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}">OPPO</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '10px', 'color': 'rgb(150,150,150)'}" v-on:click="gotoGoodPage(1)">书籍</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="gotoGoodPage(2)">手机</el-button>
           </div>
         </el-col>
         <el-col>
@@ -58,6 +55,18 @@ export default {
     // 获取图片
     getPhoto () {
       return require('./photo.jpg')
+    },
+    // 进入商品详情页
+    gotoGoodPage (val) {
+      let url = document.location.toString()
+      let arrUrl = url.split('//')
+      let start = arrUrl[1].indexOf('/')
+      let relUrl = arrUrl[1].substring(start)
+      if (val === 1 && relUrl !== '/#/shopIndex/shopBook') {
+        this.$router.push('/shopIndex/shopBook')
+      } else if (val === 2 && relUrl !== '/#/shopIndex/shopPhone') {
+        this.$router.push('/shopIndex/shopPhone')
+      }
     }
   },
   mounted () {

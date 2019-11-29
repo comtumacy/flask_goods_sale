@@ -2,7 +2,9 @@
     <div class="login" v-bind:style="{'margin-left': (width / 2) + 'px', 'margin-right': (width / 2) + 'px',}">
       <el-row class="logoRow">
         <el-col :span="24" v-on:click.native="goToIndex()" v-bind:style="{'cursor': 'pointer'}">
-          <img :src="getLogo()" alt="" class="logo">
+          <el-tooltip class="item" effect="dark" content="进入主页" placement="bottom">
+            <img :src="getLogo()" alt="" class="logo">
+          </el-tooltip>
           <span id="loginTitle">闲置商品交易网</span>
         </el-col>
       </el-row>
