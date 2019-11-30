@@ -85,8 +85,10 @@ export default {
     },
     // 刷新验证码图片
     refreshCaptchaImg () {
-      this.$message.info('刷新验证码')
       this.getCaptchaImg()
+      setTimeout(() => {
+        this.$message.info('刷新验证码')
+      }, 1000)
     },
     // 点击登录按钮事件
     submitForm () {
@@ -113,6 +115,7 @@ export default {
                   }, 1000)
                 } else {
                   this.$message.error(res.data.info)
+                  this.refreshCaptchaImg()
                 }
               })
           } else {

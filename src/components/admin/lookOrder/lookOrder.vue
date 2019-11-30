@@ -1,116 +1,116 @@
 <template>
-    <div class="lookOrder" v-loading="loading">
-      <el-row class="lookOrderHeader">
-        <span class="el-icon-shopping-bag-1"></span>
-        <span class="lookOrderHeaderText">订单查看</span>
-      </el-row>
-      <div class="lookOrderTable">
-        <div v-bind:style="{'background-color': 'white'}">
-          <el-table
-            :data="data"
-            border
-            :style="{'width': (widthNow - 220) + 'px'}">
-            <el-table-column
-              prop="goodid"
-              label="商品ID"
-              width="100"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="goodname"
-              label="商品名称"
-              header-align="center"
-              align="center"
-              :resizable="false"
-              :show-overflow-tooltip=true>
-            </el-table-column>
-            <el-table-column
-              prop="number"
-              label="数量"
-              width="80"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="status"
-              label="状态"
-              width="100"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="price"
-              label="价格"
-              width="100"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="date"
-              label="下单时间"
-              width="160"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="buyer"
-              label="买家"
-              width="100"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="seller"
-              label="卖家"
-              width="100"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              label="地址"
-              width="160"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-            <el-table-column
-              prop="tel"
-              label="电话"
-              width="130"
-              header-align="center"
-              align="center"
-              :resizable="false">
-            </el-table-column>
-          </el-table>
-          <el-pagination
-            @current-change="handleCurrentChange"
-            :page-size="10"
-            layout="prev, pager, next, jumper"
-            :total="pageAllNumber"
-            class="lookOrderPage">
-          </el-pagination>
-          <el-button v-on:click="searchOpen()" class="lookOrderButton" type="success" size="small">精确搜索</el-button>
-        </div>
+  <div class="lookOrder" v-loading="loading">
+    <el-row class="lookOrderHeader">
+      <span class="el-icon-shopping-bag-1"></span>
+      <span class="lookOrderHeaderText">订单查看</span>
+    </el-row>
+    <div class="lookOrderTable">
+      <div v-bind:style="{'background-color': 'white'}">
+        <el-table
+          :data="data"
+          border
+          :style="{'width': (widthNow - 220) + 'px'}">
+          <el-table-column
+            prop="goodid"
+            label="商品ID"
+            width="100"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="goodname"
+            label="商品名称"
+            header-align="center"
+            align="center"
+            :resizable="false"
+            :show-overflow-tooltip=true>
+          </el-table-column>
+          <el-table-column
+            prop="number"
+            label="数量"
+            width="80"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="status"
+            label="状态"
+            width="100"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="price"
+            label="价格"
+            width="100"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="date"
+            label="下单时间"
+            width="160"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="buyer"
+            label="买家"
+            width="100"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="seller"
+            label="卖家"
+            width="100"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            label="地址"
+            width="160"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+          <el-table-column
+            prop="tel"
+            label="电话"
+            width="130"
+            header-align="center"
+            align="center"
+            :resizable="false">
+          </el-table-column>
+        </el-table>
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :page-size="10"
+          layout="prev, pager, next, jumper"
+          :total="pageAllNumber"
+          class="lookOrderPage">
+        </el-pagination>
+        <el-button v-on:click="searchOpen()" class="lookOrderButton" type="success" size="small">精确搜索</el-button>
       </div>
-      <transition :duration="{enter:900,leave:800}" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-        <searchAlert
-          v-show="searchSign"
-          @closeAndSearch="find"
-          @sent="searchClose"
-          v-bind:widthNow="widthNow"
-          v-bind:heightNow="heightNow">
-        </searchAlert>
-      </transition>
     </div>
+    <transition :duration="{enter:900,leave:800}" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+      <searchAlert
+        v-show="searchSign"
+        @closeAndSearch="find"
+        @sent="searchClose"
+        v-bind:widthNow="widthNow"
+        v-bind:heightNow="heightNow">
+      </searchAlert>
+    </transition>
+</div>
 </template>
 
 <script>

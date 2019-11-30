@@ -88,6 +88,8 @@ export default {
       this.active = '3-2'
     } else if (relUrl === '/#/admin/addGood') {
       this.active = '4-1'
+    } else if (relUrl === '/#/admin/lookGoodsManagement') {
+      this.active = '4-2'
     }
   },
   data () {
@@ -147,6 +149,8 @@ export default {
         this.$router.push('/admin/lookRating')
       } else if (index === '4-1' && relUrl !== '/#/admin/addGood') {
         this.$router.push('/admin/addGood')
+      } else if (index === '4-2' && relUrl !== '/#/admin/lookGoodsManagement') {
+        this.$router.push('/admin/lookGoodsManagement')
       }
     }
   },

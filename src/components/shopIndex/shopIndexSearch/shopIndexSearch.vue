@@ -14,7 +14,7 @@
                 <el-option label="闲置书籍" value="闲置书籍"></el-option>
                 <el-option label="闲置手机" value="闲置手机"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search" v-bind:style="{'padding': '9px 17px 9px 17px'}"></el-button>
+              <el-button slot="append" icon="el-icon-search" v-bind:style="{'padding': '9px 17px 9px 17px'}" v-on:click="search()"></el-button>
             </el-input>
           </div>
           <div>
@@ -66,6 +66,20 @@ export default {
         this.$router.push('/shopIndex/shopBook')
       } else if (val === 2 && relUrl !== '/#/shopIndex/shopPhone') {
         this.$router.push('/shopIndex/shopPhone')
+      }
+    },
+    // 搜索内容
+    search () {
+      let url = document.location.toString()
+      let arrUrl = url.split('//')
+      let start = arrUrl[1].indexOf('/')
+      let relUrl = arrUrl[1].substring(start)
+      if (this.input === '闲置书籍' && relUrl !== '/#/shopIndex/shopBook') {
+        this.$router.push('/shopIndex/shopBook')
+      } else if (this.input === '闲置手机' && relUrl !== '/#/shopIndex/shopPhone') {
+        this.$router.push('/shopIndex/shopPhone')
+      } else {
+        this.$message.error('未搜索到任何内容')
       }
     }
   },

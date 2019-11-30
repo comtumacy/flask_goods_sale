@@ -24,6 +24,7 @@ import modifyOrder from './src/components/admin/modifyOrder/modifyOrder'
 import lookRating from './src/components/admin/lookRating/lookRating'
 import addRating from './src/components/admin/addRating/addRating'
 import addGood from './src/components/admin/addGood/addGood'
+import lookGoodsManagement from './src/components/admin/lookGoodsManagement/lookGoodsManagement'
 // 404
 import notFound from './src/components/404/404'
 
@@ -124,6 +125,11 @@ const routes = [
         // 商品添加
         path: 'addGood',
         component: addGood
+      },
+      {
+        // 库存查看
+        path: 'lookGoodsManagement',
+        component: lookGoodsManagement
       }
     ]
   },
@@ -145,7 +151,8 @@ const path = {
   '/admin/lookOrder': 'path',
   '/admin/modifyOrder': 'path',
   '/admin/lookRating': 'path',
-  '/admin/addRating': 'path'
+  '/admin/addRating': 'path',
+  '/admin/lookGoodsManagement': 'path'
 }
 
 router.beforeEach((to, from, next) => {
