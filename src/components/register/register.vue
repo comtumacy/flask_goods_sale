@@ -55,7 +55,6 @@ export default {
     // 实时获取、更改浏览器长宽
     window.onresize = () => {
       this.getLength()
-      console.log(this.width)
     }
   },
   updated () {

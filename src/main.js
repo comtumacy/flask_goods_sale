@@ -16,6 +16,10 @@ import store from './store/store'
 import './http/http'
 // 按需导入Element UI组件库包
 import { Icon, Button, Row, Col, Divider, Container, Aside, Main, Form, FormItem, Input, InputNumber, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Notification, Select, Option, OptionGroup, Menu, Submenu, MenuItem, MenuItemGroup, Carousel, CarouselItem, Breadcrumb, BreadcrumbItem, Pagination, Loading, Table, TableColumn, Tooltip, Upload } from 'element-ui'
+// 按需导入iView UI
+import { Tabs, TabPane } from 'view-design'
+// 导入iView UI
+import 'view-design/dist/styles/iview.css'
 
 Vue.config.productionTip = false
 // 定义全局变量axIos
@@ -61,6 +65,9 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Tooltip)
 Vue.use(Upload)
+//  iView UI
+Vue.component('Tabs', Tabs)
+Vue.component('TabPane', TabPane)
 
 new Vue({
   router,

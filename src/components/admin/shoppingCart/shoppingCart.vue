@@ -159,7 +159,7 @@ export default {
       for (let i = 0; i < goods.length; i++) {
         this.$axios({
           method: 'post',
-          url: 'http://139.155.33.105/goodsApi/buyer/look_good',
+          url: 'https://www.yitongli.cn/goodsApi/buyer/look_good',
           headers: {
             'token': this.$store.getters.token_getters,
             'Uname': this.$store.getters.username_getters
@@ -184,10 +184,9 @@ export default {
     },
     // 去生产订单
     goToBuy () {
-      console.log(this.$store.getters.goods_getters)
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/buyer/buy_good',
+        url: 'https://www.yitongli.cn/goodsApi/buyer/buy_good',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -218,8 +217,6 @@ export default {
 <style lang="stylus">
 .shoppingCart
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

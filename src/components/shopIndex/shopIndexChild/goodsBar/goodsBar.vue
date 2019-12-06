@@ -244,7 +244,7 @@ export default {
     getGoods1 () {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/public_get_goods',
+        url: 'https://www.yitongli.cn/goodsApi/public/public_get_goods',
         data: { 'type': 1 }
       }).then(res => {
         this.goodIds = res.data.goodIds
@@ -255,7 +255,7 @@ export default {
     getGoods2 () {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/public_get_goods',
+        url: 'https://www.yitongli.cn/goodsApi/public/public_get_goods',
         data: { 'type': 2 }
       }).then(res => {
         this.goodIds2 = res.data.goodIds

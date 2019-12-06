@@ -10,26 +10,14 @@ module.exports = {
         styleLibraryName: 'theme-chalk'
       },
       'element-ui'
+    ],
+    [
+      'import',
+      {
+        libraryName: 'view-design',
+        libraryDirectory: 'src/components'
+      },
+      'iView'
     ]
-    // [
-    //   'component',
-    //   {
-    //     libraryName: 'at',
-    //     libraryDirectory: 'src/components'
-    //   },
-    //   'at'
-    // ]
   ]
 }
-
-// 单个引入
-// plugins: [
-//   [
-//     'component',
-//     {
-//       libraryName: 'element-ui',
-//       styleLibraryName: 'theme-chalk'
-//     },
-//     'element-ui'
-//   ]
-// ]

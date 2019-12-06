@@ -49,7 +49,6 @@ export default {
     // 回调选择的点菜单栏
     handleSelect (key) {
       this.selectNow = key
-      console.log(key)
     },
     // 请空当前选择
     clearSelectNow () {

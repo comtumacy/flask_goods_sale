@@ -9,7 +9,7 @@
           <span>商品图片上传</span>
           <el-upload
             class="avatar-uploader"
-            action="http://139.155.33.105/goodsApi/seller/add_photo"
+            action="https://www.yitongli.cn/goodsApi/seller/add_photo"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
@@ -127,13 +127,12 @@ export default {
     this.loading = true
     this.$axios({
       method: 'post',
-      url: 'http://139.155.33.105/goodsApi/public/judge_user',
+      url: 'https://www.yitongli.cn/goodsApi/public/judge_user',
       headers: {
         'token': this.$store.getters.token_getters,
         'Uname': this.$store.getters.username_getters
       }
     }).then(res => {
-      console.log(res)
       if (res.data.userType === 1) {
         this.judgeUserSign = true
         this.getContent()
@@ -281,7 +280,6 @@ export default {
     },
     // 图片上传成功函数
     handleAvatarSuccess (res) {
-      console.log(res)
       this.$message.success(res.info)
       this.imageUrl = res.url
     },
@@ -314,7 +312,7 @@ export default {
     selectType1 () {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/seller/select_type',
+        url: 'https://www.yitongli.cn/goodsApi/seller/select_type',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -338,7 +336,7 @@ export default {
     selectType2 () {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/seller/select_type',
+        url: 'https://www.yitongli.cn/goodsApi/seller/select_type',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -362,7 +360,7 @@ export default {
       this.value4 = ''
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/seller/select_type',
+        url: 'https://www.yitongli.cn/goodsApi/seller/select_type',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -386,7 +384,7 @@ export default {
           if (valid) {
             this.$axios({
               method: 'post',
-              url: 'http://139.155.33.105/goodsApi/seller/add_good',
+              url: 'https://www.yitongli.cn/goodsApi/seller/add_good',
               headers: {
                 'token': this.$store.getters.token_getters,
                 'Uname': this.$store.getters.username_getters
@@ -437,8 +435,6 @@ export default {
 <style lang="stylus">
 .addGood
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

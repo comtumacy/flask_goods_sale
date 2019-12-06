@@ -143,7 +143,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/order/get_order',
+        url: 'https://www.yitongli.cn/goodsApi/order/get_order',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -178,7 +178,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/order/look_order',
+        url: 'https://www.yitongli.cn/goodsApi/order/look_order',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -223,8 +223,6 @@ export default {
 <style lang="stylus">
 .lookOrder
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

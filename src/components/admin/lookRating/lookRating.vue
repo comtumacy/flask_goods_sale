@@ -155,7 +155,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/look_rating',
+        url: 'https://www.yitongli.cn/goodsApi/public/look_rating',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -190,7 +190,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/find_rating',
+        url: 'https://www.yitongli.cn/goodsApi/public/find_rating',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -224,18 +224,16 @@ export default {
     editOpen (val) {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/judge_user',
+        url: 'https://www.yitongli.cn/goodsApi/public/judge_user',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
         }
       }).then(res => {
-        console.log(res)
         if (res.data.userType === 1) {
           this.alertInfo()
         } else {
           this.editSign = true
-          console.log(this.data[val])
           this.editGoodsNo = this.data[val].Rgoodsno
           this.editRno = this.data[val].Rno
         }
@@ -252,7 +250,7 @@ export default {
       this.editSign = false
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/modify_ratings',
+        url: 'https://www.yitongli.cn/goodsApi/public/modify_ratings',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -302,8 +300,6 @@ export default {
 <style lang="stylus">
 .lookRating
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

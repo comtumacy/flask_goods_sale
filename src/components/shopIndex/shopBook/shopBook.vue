@@ -54,7 +54,7 @@ export default {
   },
   computed: {},
   watch: {
-    selectNavigationSign1 (newVal, oldVal) {
+    selectNavigationSign1 (newVal) {
       this.activeIndex = newVal
       this.selectNow = newVal
     }

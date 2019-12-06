@@ -153,7 +153,7 @@ export default {
     this.type = this.id.substr(-1, 1)
     this.$axios({
       method: 'post',
-      url: 'http://139.155.33.105/goodsApi/public/public_get_goods_id',
+      url: 'https://www.yitongli.cn/goodsApi/public/public_get_goods_id',
       data: {
         'type': parseInt(this.type),
         'good_id': this.ID
@@ -161,7 +161,6 @@ export default {
     }).then(res => {
       this.loading = false
       this.data = res.data
-      console.log(res)
     })
   },
   data () {
@@ -196,7 +195,6 @@ export default {
         if (this.type === '1') {
           return this.data.goodsContent[0].book_img
         } else {
-          console.log(2)
           return this.data.goodsContent[0].img
         }
       }
@@ -269,7 +267,6 @@ export default {
         if (this.type === '1') {
           return this.data.goodsContent[0].Price
         } else {
-          console.log(2)
           return this.data.goodsContent[0].price
         }
       }
@@ -306,7 +303,6 @@ export default {
         if (this.type === '1') {
           return this.data.goodsContent[0].number
         } else {
-          console.log(2)
           return this.data.goodsContent[0].number
         }
       }
@@ -485,7 +481,7 @@ export default {
         // console.log()
         this.$axios({
           method: 'post',
-          url: 'http://139.155.33.105/goodsApi/buyer/add_favorites',
+          url: 'https://www.yitongli.cn/goodsApi/buyer/add_favorites',
           headers: {
             'token': this.$store.getters.token_getters,
             'Uname': this.$store.getters.username_getters
@@ -495,7 +491,6 @@ export default {
             'good_id': this.getGoodID()
           }
         }).then(res => {
-          console.log(res)
           if (res.status === 200) {
             this.$message.success(res.data.info)
           } else {

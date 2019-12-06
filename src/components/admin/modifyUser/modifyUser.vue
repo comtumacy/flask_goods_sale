@@ -129,7 +129,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/get_user_info',
+        url: 'https://www.yitongli.cn/goodsApi/public/get_user_info',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -156,7 +156,7 @@ export default {
         if (valid) {
           this.$axios({
             method: 'post',
-            url: 'http://139.155.33.105/goodsApi/public/modify_user_info',
+            url: 'https://www.yitongli.cn/goodsApi/public/modify_user_info',
             headers: {
               'token': this.$store.getters.token_getters,
               'Uname': this.$store.getters.username_getters
@@ -199,8 +199,6 @@ export default {
 <style lang="stylus">
 .modifyUser
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

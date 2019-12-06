@@ -64,13 +64,12 @@ export default {
     this.loading = true
     this.$axios({
       method: 'post',
-      url: 'http://139.155.33.105/goodsApi/public/judge_user',
+      url: 'https://www.yitongli.cn/goodsApi/public/judge_user',
       headers: {
         'token': this.$store.getters.token_getters,
         'Uname': this.$store.getters.username_getters
       }
     }).then(res => {
-      console.log(res)
       if (res.data.userType === 1) {
         this.judgeUserSign = true
         this.getContent()
@@ -113,7 +112,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/seller/look_goods',
+        url: 'https://www.yitongli.cn/goodsApi/seller/look_goods',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -146,8 +145,6 @@ export default {
 <style lang="stylus">
 .lookGoodsManagement
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%

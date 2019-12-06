@@ -4,7 +4,7 @@
       <span class="el-icon-star-off"></span>
       <span class="favoritesHeaderText">我的收藏</span>
     </el-row>
-    <div class="favoritesTable">
+    <div class="favoritesTable" v-bind:style="{'height': favoritesHeightNow + 'px'}">
       <div v-bind:style="{'background-color': 'white'}">
         <el-table
           :data="data"
@@ -88,7 +88,7 @@
 export default {
   name: 'favorites',
   components: {},
-  props: ['widthNow'],
+  props: ['widthNow', 'heightNow', 'favoritesHeightNow'],
   created () {
     this.getContent()
   },
@@ -113,7 +113,7 @@ export default {
       }).then(() => {
         this.$axios({
           method: 'post',
-          url: 'http://139.155.33.105/goodsApi/buyer/delete_favorites',
+          url: 'https://www.yitongli.cn/goodsApi/buyer/delete_favorites',
           headers: {
             'token': this.$store.getters.token_getters,
             'Uname': this.$store.getters.username_getters
@@ -139,7 +139,7 @@ export default {
       this.loading = true
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/buyer/look_favorites',
+        url: 'https://www.yitongli.cn/goodsApi/buyer/look_favorites',
         headers: {
           'token': this.$store.getters.token_getters,
           'Uname': this.$store.getters.username_getters
@@ -181,7 +181,7 @@ export default {
           for (let i = 0; i < num; i++) {
             this.$axios({
               method: 'post',
-              url: 'http://139.155.33.105/goodsApi/buyer/delete_favorites',
+              url: 'https://www.yitongli.cn/goodsApi/buyer/delete_favorites',
               headers: {
                 'token': this.$store.getters.token_getters,
                 'Uname': this.$store.getters.username_getters
@@ -224,8 +224,6 @@ export default {
 <style lang="stylus">
 .favorites
   position absolute
-  top 50px
-  left 200px
   right 0
   width 100%
   height 100%
@@ -253,6 +251,7 @@ export default {
     position absolute
     margin-left 10px
     top 70px
+    overflow auto
     .el-table
       .favoritesHeaderTextImg
         width 100px

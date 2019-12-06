@@ -75,7 +75,7 @@ export default {
     getCaptchaImg () {
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/user/verification_code'
+        url: 'https://www.yitongli.cn/goodsApi/user/verification_code'
       }).then(res => {
         this.ctoken = res.headers.ctoken
         this.captchaImg = res.data.base64
@@ -97,7 +97,7 @@ export default {
           if (valid) {
             this.$axios({
               method: 'post',
-              url: 'http://139.155.33.105/goodsApi/user/login',
+              url: 'https://www.yitongli.cn/goodsApi/user/login',
               data: this.ruleForm,
               headers: {
                 ctoken: this.ctoken,
@@ -107,7 +107,7 @@ export default {
               .then(res => {
                 if (res.status === 200) {
                   this.$message.success('登录成功，即将返回主页')
-                  console.log(res.headers.token)
+                  // console.log(res.headers.token)
                   this.$store.dispatch('token_actions', res.headers.token)
                   this.$store.dispatch('username_actions', res.headers.username)
                   setTimeout(() => {

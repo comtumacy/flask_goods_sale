@@ -299,7 +299,7 @@ export default {
       }
       this.$axios({
         method: 'post',
-        url: 'http://139.155.33.105/goodsApi/public/public_get_goods_detailed',
+        url: 'https://www.yitongli.cn/goodsApi/public/public_get_goods_detailed',
         data: {
           'type': type,
           'content': this.selectNow,
@@ -320,7 +320,6 @@ export default {
     // 获取点击事件
     enterShopPage (val) {
       let goodId = this.goodsContent[val].good_id
-      console.log(this.goodsContent[val])
       this.$router.push('/shopIndex/good/' + goodId + '&' + 2)
     }
   },
