@@ -31,7 +31,11 @@
         <el-menu-item index="体育/运动">体育/运动</el-menu-item>
         <el-menu-item index="test" v-show="false">test</el-menu-item>
       </el-menu>
-      <shopBookDetailed v-bind:width="width" v-bind:selectNow="selectNow" v-bind:widthNow="widthNow"></shopBookDetailed>
+      <shopBookDetailed
+        v-bind:width="width"
+        v-bind:selectNow="selectNow"
+        v-bind:widthNow="widthNow"
+        v-bind:forceSignReturn="forceSignReturn"></shopBookDetailed>
     </div>
 </template>
 
@@ -42,7 +46,7 @@ export default {
   components: {
     shopBookDetailed
   },
-  props: ['width', 'widthNow', 'selectNavigationSign1'],
+  props: ['width', 'widthNow', 'selectNavigationSign1', 'forceSignReturn'],
   created () {
     this.$emit('signEdit', '3')
   },

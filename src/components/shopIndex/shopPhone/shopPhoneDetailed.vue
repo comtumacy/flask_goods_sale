@@ -237,17 +237,28 @@ export default {
   props: [
     'width',
     'selectNow',
-    'widthNow'
+    'widthNow',
+    'forceSignReturn'
   ],
   created () {
-    this.getGoods(1)
+    if (this.$store.getters.searchGood_getters.length !== 0) {
+      this.loading = true
+      this.searchContent = this.$store.getters.searchGood_getters.search_content
+      this.goodsContent = this.$store.getters.searchGood_getters.goodsContent
+      this.pageNumber = this.$store.getters.searchGood_getters.pageNumber
+      this.type = 2
+      this.loading = false
+    } else {
+      this.getGoods(1)
+    }
   },
   data () {
     return {
       goodsContent: '',
       pageNumber: 0,
       loading: false,
-      pageNow: 0
+      pageNow: 0,
+      type: 1
     }
   },
   computed: {
@@ -287,6 +298,14 @@ export default {
     selectNow () {
       this.getGoods(1)
       this.pageNow = 0
+    },
+    forceSignReturn () {
+      this.loading = true
+      this.searchContent = this.$store.getters.searchGood_getters.search_content
+      this.goodsContent = this.$store.getters.searchGood_getters.goodsContent
+      this.pageNumber = this.$store.getters.searchGood_getters.pageNumber
+      this.type = 2
+      this.loading = false
     }
   },
   methods: {
@@ -306,16 +325,38 @@ export default {
           'pageNum': val
         }
       }).then(res => {
-        // console.log(res)
         this.loading = false
         this.goodsContent = res.data.goodsContent
         this.pageNumber = res.data.pageNumber
+        this.type = 1
+      })
+    },
+    // 获取搜索后的数据
+    getSearchGood (val) {
+      this.loading = true
+      this.$axios({
+        method: 'post',
+        url: 'https://yitongli.cn/goodsApi/public/search_good',
+        data: {
+          'type': 2,
+          'content': this.searchContent,
+          'pageNum': val
+        }
+      }).then(res => {
+        this.loading = false
+        this.goodsContent = res.data.goodsContent
+        this.pageNumber = res.data.pageNumber
+        this.type = 2
       })
     },
     // 回调当前页
     handleCurrentChange (val) {
       this.pageNow = val
-      this.getGoods(val)
+      if (this.type === 1) {
+        this.getGoods(val)
+      } else {
+        this.getSearchGood(val)
+      }
     },
     // 获取点击事件
     enterShopPage (val) {
@@ -357,7 +398,7 @@ export default {
       > img
         padding-left 15px
         padding-right 15px
-        width 168px
+        width 200px
         height 200px
         transition all 0.4s
       .goodName1
@@ -366,8 +407,10 @@ export default {
         padding-left 15px
         padding-right 15px
         overflow hidden
-        width 168px
-        height 40px
+        width 200px
+        height 54px
+        font-size 17px
+        font-family "Microsoft YaHei"
       .goodPrice1
         position absolute
         margin-top 40px
@@ -396,7 +439,7 @@ export default {
       > img
         padding-left 15px
         padding-right 15px
-        width 168px
+        width 200px
         height 200px
         transition all 0.4s
       .goodName2
@@ -405,8 +448,10 @@ export default {
         padding-left 15px
         padding-right 15px
         overflow hidden
-        width 168px
-        height 40px
+        width 200px
+        height 54px
+        font-size 17px
+        font-family "Microsoft YaHei"
       .goodPrice2
         position absolute
         margin-top 40px
@@ -434,7 +479,7 @@ export default {
       > img
         padding-left 15px
         padding-right 15px
-        width 168px
+        width 200px
         height 200px
         transition all 0.4s
       .goodName3
@@ -443,8 +488,10 @@ export default {
         padding-left 15px
         padding-right 15px
         overflow hidden
-        width 168px
-        height 40px
+        width 200px
+        height 54px
+        font-size 17px
+        font-family "Microsoft YaHei"
       .goodPrice3
         position absolute
         margin-top 40px
@@ -472,7 +519,7 @@ export default {
       > img
         padding-left 15px
         padding-right 15px
-        width 168px
+        width 200px
         height 200px
         transition all 0.4s
       .goodName4
@@ -481,8 +528,10 @@ export default {
         padding-left 15px
         padding-right 15px
         overflow hidden
-        width 168px
-        height 40px
+        width 200px
+        height 54px
+        font-size 17px
+        font-family "Microsoft YaHei"
       .goodPrice4
         position absolute
         margin-top 40px
@@ -510,7 +559,7 @@ export default {
       > img
         padding-left 15px
         padding-right 15px
-        width 168px
+        width 200px
         height 200px
         transition all 0.4s
       .goodName5
@@ -519,8 +568,10 @@ export default {
         padding-left 15px
         padding-right 15px
         overflow hidden
-        width 168px
-        height 40px
+        width 200px
+        height 54px
+        font-size 17px
+        font-family "Microsoft YaHei"
       .goodPrice5
         position absolute
         margin-top 40px

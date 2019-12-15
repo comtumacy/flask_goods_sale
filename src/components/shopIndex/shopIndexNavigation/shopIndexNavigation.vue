@@ -1,6 +1,6 @@
 <template>
     <div class="shopIndexNavigation">
-      <div class="navigationTitle" v-bind:style="{'width': '100%'}">
+      <div class="navigationTitle" v-bind:style="{'width': backColorWidth + 'px'}">
         <div class="navigationButton" v-bind:style="{'margin-left': (width / 2) + 'px', 'margin-right': (width / 2) + 'px',}">
           <el-menu
             :default-active="activeIndex"
@@ -60,7 +60,8 @@ export default {
   props: [
     'width',
     'widthNow',
-    'activeIndex'
+    'activeIndex',
+    'backColorWidth'
   ],
   created () {},
   data () {

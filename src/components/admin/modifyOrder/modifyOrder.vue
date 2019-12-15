@@ -2,7 +2,7 @@
     <div class="modifyOrder" v-loading="loading">
       <el-row class="modifyOrderHeader">
         <span class="el-icon-shopping-bag-1"></span>
-        <span class="modifyOrderHeaderText">订单修改</span>
+        <span v-admin-header-text>订单修改</span>
       </el-row>
       <div class="modifyOrderTable">
         <div v-bind:style="{'background-color': 'white'}">
@@ -269,11 +269,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .modifyOrderHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .modifyOrderTable
     position absolute
     margin-left 10px

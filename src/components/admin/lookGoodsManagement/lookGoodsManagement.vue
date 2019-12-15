@@ -2,7 +2,7 @@
   <div class="lookGoodsManagement" v-loading="loading">
     <el-row class="lookGoodsManagementHeader">
       <span class="icon-pie-chart"></span>
-      <span class="lookGoodsManagementHeaderText">库存查看</span>
+      <span v-admin-header-text>库存查看</span>
     </el-row>
     <div class="lookGoodsManagementTable" v-if="judgeUserSign">
       <div v-bind:style="{'background-color': 'white'}">
@@ -163,11 +163,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .lookGoodsManagementHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .lookGoodsManagementTable
     position absolute
     margin-left 10px

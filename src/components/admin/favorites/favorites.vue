@@ -2,9 +2,9 @@
   <div class="favorites" v-loading="loading">
     <el-row class="favoritesHeader">
       <span class="el-icon-star-off"></span>
-      <span class="favoritesHeaderText">我的收藏</span>
+      <span v-admin-header-text>我的收藏</span>
     </el-row>
-    <div class="favoritesTable" v-bind:style="{'height': favoritesHeightNow + 'px'}">
+    <div class="favoritesTable" v-bind:style="{'height': tableHeightNow + 'px'}">
       <div v-bind:style="{'background-color': 'white'}">
         <el-table
           :data="data"
@@ -88,7 +88,7 @@
 export default {
   name: 'favorites',
   components: {},
-  props: ['widthNow', 'heightNow', 'favoritesHeightNow'],
+  props: ['widthNow', 'heightNow', 'tableHeightNow'],
   created () {
     this.getContent()
   },
@@ -242,11 +242,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .favoritesHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .favoritesTable
     position absolute
     margin-left 10px

@@ -2,7 +2,10 @@
   <div class="shopIndexChildIndex" v-bind:style="{'margin-left': (width / 2) + 'px', 'margin-right': (width / 2) + 'px',}">
     <carousel v-bind:widthNow="widthNow"></carousel>
     <goods-bar v-bind:width="width"></goods-bar>
-    <shopIndexBottom v-bind:width="width"></shopIndexBottom>
+    <shopIndexBottom
+      v-bind:width="width"
+      v-bind:backColorWidth="backColorWidth">
+    </shopIndexBottom>
   </div>
 </template>
 
@@ -19,7 +22,8 @@ export default {
   },
   props: [
     'width',
-    'widthNow'
+    'widthNow',
+    'backColorWidth'
   ],
   created () {
     this.$emit('signEdit', '2')

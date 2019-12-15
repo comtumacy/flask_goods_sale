@@ -69,6 +69,8 @@ export default {
   left 0
   right 0
   width 1200px
+  height 100%
+  overflow auto
   .registerRow
     .registerImg
       position absolute

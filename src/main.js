@@ -14,6 +14,8 @@ import './assets/animate/animate.css'
 import store from './store/store'
 // 导入全局axIos拦截器
 import './http/http'
+// 导入自定义指令JS
+import './directive/myDirective'
 // 按需导入Element UI组件库包
 import { Icon, Button, Row, Col, Divider, Container, Aside, Main, Form, FormItem, Input, InputNumber, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Notification, Select, Option, OptionGroup, Menu, Submenu, MenuItem, MenuItemGroup, Carousel, CarouselItem, Breadcrumb, BreadcrumbItem, Pagination, Loading, Table, TableColumn, Tooltip, Upload } from 'element-ui'
 // 按需导入iView UI

@@ -16,15 +16,6 @@ import login from './src/components/login/login'
 import register from './src/components/register/register'
 // admin
 import admin from './src/components/admin/adminIndex'
-// import favorites from './src/components/admin/favorites/favorites'
-// import modifyUser from './src/components/admin/modifyUser/modifyUser'
-// import shoppingCart from './src/components/admin/shoppingCart/shoppingCart'
-// import lookOrder from './src/components/admin/lookOrder/lookOrder'
-// import modifyOrder from './src/components/admin/modifyOrder/modifyOrder'
-// import lookRating from './src/components/admin/lookRating/lookRating'
-// import addRating from './src/components/admin/addRating/addRating'
-// import addGood from './src/components/admin/addGood/addGood'
-// import lookGoodsManagement from './src/components/admin/lookGoodsManagement/lookGoodsManagement'
 // 404
 import notFound from './src/components/404/404'
 
@@ -84,56 +75,6 @@ const routes = [
     path: '/admin',
     component: admin
   },
-  // redirect: '/admin/favorites',
-  // // 嵌套路由
-  // children: [
-  //   {
-  //     // 收藏页面
-  //     path: 'favorites',
-  //     component: favorites
-  //   },
-  //   {
-  //     // 账号修改
-  //     path: 'modifyUser',
-  //     component: modifyUser
-  //   },
-  //   {
-  //     // 购物车
-  //     path: 'shoppingCart',
-  //     component: shoppingCart
-  //   },
-  //   {
-  //     // 订单查看
-  //     path: 'lookOrder',
-  //     component: lookOrder
-  //   },
-  //   {
-  //     // 订单修改
-  //     path: 'modifyOrder',
-  //     component: modifyOrder
-  //   },
-  //   {
-  //     // 评论查看
-  //     path: 'lookRating',
-  //     component: lookRating
-  //   },
-  //   {
-  //     // 添加评论
-  //     path: 'addRating',
-  //     component: addRating
-  //   },
-  //   {
-  //     // 商品添加
-  //     path: 'addGood',
-  //     component: addGood
-  //   },
-  //   {
-  //     // 库存查看
-  //     path: 'lookGoodsManagement',
-  //     component: lookGoodsManagement
-  //   }
-  // ]
-  // },
   // 404
   {
     path: '*',
@@ -142,19 +83,10 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // mode: 'history',
+  // base: '/goodssale/',
   routes
 })
-
-// const path = {
-//   '/admin/favorites': 'path',
-//   '/admin/modifyUser': 'path',
-//   '/admin/shoppingCart': 'path',
-//   '/admin/lookOrder': 'path',
-//   '/admin/modifyOrder': 'path',
-//   '/admin/lookRating': 'path',
-//   '/admin/addRating': 'path',
-//   '/admin/lookGoodsManagement': 'path'
-// }
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/admin') {

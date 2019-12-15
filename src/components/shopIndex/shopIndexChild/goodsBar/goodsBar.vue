@@ -341,7 +341,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName1
@@ -350,8 +350,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice1
           position absolute
           margin-top 40px
@@ -380,7 +382,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName2
@@ -389,8 +391,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice2
           position absolute
           margin-top 40px
@@ -418,7 +422,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName3
@@ -427,8 +431,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice3
           position absolute
           margin-top 40px
@@ -456,7 +462,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName4
@@ -465,8 +471,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice4
           position absolute
           margin-top 40px
@@ -506,6 +514,10 @@ export default {
           font-family sans-serif
           color rgb(187,187,187)
     .PropagandaPhoto
+      > img
+        border-width 1px
+        border-style solid
+        border-color rgb(197,187,187)
       .good1:hover
         border:1px solid rgb(180,181,62)
       .good1:hover img
@@ -521,7 +533,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName1
@@ -530,8 +542,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice1
           position absolute
           margin-top 40px
@@ -560,7 +574,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName2
@@ -569,8 +583,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice2
           position absolute
           margin-top 40px
@@ -598,7 +614,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName3
@@ -607,8 +623,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice3
           position absolute
           margin-top 40px
@@ -636,7 +654,7 @@ export default {
         > img
           padding-left 15px
           padding-right 15px
-          width 168px
+          width 200px
           height 200px
           transition all 0.4s
         .goodName4
@@ -645,8 +663,10 @@ export default {
           padding-left 15px
           padding-right 15px
           overflow hidden
-          width 168px
-          height 40px
+          width 200px
+          height 54px
+          font-size 17px
+          font-family "Microsoft YaHei"
         .goodPrice4
           position absolute
           margin-top 40px

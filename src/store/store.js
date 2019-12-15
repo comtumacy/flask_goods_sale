@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const state = {
   token: 'null',
   username: '',
-  goods: []
+  goods: [],
+  searchGood: []
 }
 
 const getters = {
@@ -46,6 +47,18 @@ const getters = {
     } else {
       return state.goods
     }
+  },
+  searchGood_getters (state) {
+    if (state.searchGood.length === 0) {
+      if (sessionStorage.getItem('searchGood') === null) {
+        return state.searchGood
+      } else {
+        state.searchGood = JSON.parse(sessionStorage.getItem('searchGood'))
+        return state.searchGood
+      }
+    } else {
+      return state.searchGood
+    }
   }
 }
 
@@ -78,6 +91,10 @@ const mutations = {
       state.goods = []
       sessionStorage.removeItem('goods')
     }
+  },
+  search_good_mutations (state, searchGood) {
+    state.searchGood = searchGood
+    sessionStorage.setItem('searchGood', JSON.stringify(state.searchGood))
   }
 }
 
@@ -93,6 +110,9 @@ const actions = {
   },
   goods_type_actions (context, goodsType) {
     context.commit('goods_type_mutations', goodsType)
+  },
+  search_good_actions (context, searchGood) {
+    context.commit('search_good_mutations', searchGood)
   }
 }
 

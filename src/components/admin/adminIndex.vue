@@ -56,7 +56,6 @@
           </el-submenu>
         </el-menu>
       </el-row>
-<!--      <router-view v-bind:widthNow="widthNow" v-bind:heightNow="heightNow" v-bind:favoritesHeightNow="favoritesHeightNow"></router-view>-->
       <div class="content" v-bind:style="{'width': contentWidth + 'px'}">
         <Tabs
           type="card"
@@ -66,17 +65,19 @@
           @on-tab-remove="handleTabRemove">
           <TabPane label="商品收藏" v-if="favoritesSign" name="favoritesSign" v-bind:style="{'height': contentHeight + 'px'}">
             <favorites
-              v-bind:favoritesHeightNow="favoritesHeightNow"
+              v-bind:tableHeightNow="tableHeightNow"
               v-bind:widthNow="widthNow"
               v-bind:heightNow="heightNow"></favorites>
           </TabPane>
           <TabPane label="信息修改" v-if="modifyUserSign" name="modifyUserSign" v-bind:style="{'height': contentHeight + 'px'}">
             <modifyUser
               v-bind:widthNow="widthNow"
-              v-bind:heightNow="heightNow"></modifyUser>
+              v-bind:heightNow="heightNow"
+              v-bind:modifyUserHeightNow="modifyUserHeightNow"></modifyUser>
           </TabPane>
           <TabPane label="购物车" v-if="shoppingCartSign" name="shoppingCartSign" v-bind:style="{'height': contentHeight + 'px'}">
             <shoppingCart
+              v-bind:tableHeightNow="tableHeightNow"
               v-bind:widthNow="widthNow"
               v-bind:heightNow="heightNow"></shoppingCart>
           </TabPane>
@@ -142,35 +143,13 @@ export default {
   created () {
     this.getLength()
     this.username = this.$store.getters.username_getters
-    // let url = document.location.toString()
-    // let arrUrl = url.split('//')
-    // let start = arrUrl[1].indexOf('/')
-    // let relUrl = arrUrl[1].substring(start)
-    // if (relUrl === '/#/admin/favorites') {
-    //   this.active = '1-1'
-    // } else if (relUrl === '/#/admin/modifyUser') {
-    //   this.active = '1-2'
-    // } else if (relUrl === '/#/admin/shoppingCart') {
-    //   this.active = '1-3'
-    // } else if (relUrl === '/#/admin/lookOrder') {
-    //   this.active = '2-1'
-    // } else if (relUrl === '/#/admin/modifyOrder') {
-    //   this.active = '2-2'
-    // } else if (relUrl === '/#/admin/addRating') {
-    //   this.active = '3-1'
-    // } else if (relUrl === '/#/admin/lookRating') {
-    //   this.active = '3-2'
-    // } else if (relUrl === '/#/admin/addGood') {
-    //   this.active = '4-1'
-    // } else if (relUrl === '/#/admin/lookGoodsManagement') {
-    //   this.active = '4-2'
-    // }
   },
   data () {
     return {
       widthNow: 0,
       heightNow: 0,
-      favoritesHeightNow: 0,
+      tableHeightNow: 0,
+      modifyUserHeightNow: 0,
       contentWidth: 0,
       contentHeight: 0,
       username: '',
@@ -196,16 +175,25 @@ export default {
       let heightNow = document.documentElement.clientHeight
       this.widthNow = widthNow
       this.heightNow = heightNow
-      if (heightNow < 867) {
-        this.favoritesHeightNow = heightNow - 120
+      // tableHeightNow
+      if (heightNow < 896) {
+        this.tableHeightNow = 750 - (896 - heightNow)
       } else {
-        this.favoritesHeightNow = 747
+        this.tableHeightNow = 750
       }
+      // modifyUser
+      if (heightNow < 866) {
+        this.modifyUserHeightNow = 660 - (866 - heightNow)
+      } else {
+        this.modifyUserHeightNow = 660
+      }
+      // content整体宽度
       if (widthNow < 130) {
         this.contentWidth = 0
       } else {
-        this.contentWidth = widthNow - 130
+        this.contentWidth = widthNow - 152
       }
+      // content整体高度
       if (heightNow < 82) {
         this.contentHeight = 0
       } else {
@@ -243,29 +231,6 @@ export default {
       } else if (index === 'shoppingCartSign') {
         this.shoppingCartSign = true
       }
-      // let url = document.location.toString()
-      // let arrUrl = url.split('//')
-      // let start = arrUrl[1].indexOf('/')
-      // let relUrl = arrUrl[1].substring(start)
-      // if (index === '1-1' && relUrl !== '/#/admin/favorites') {
-      //   this.$router.push('/admin/favorites')
-      // } else if (index === '1-2' && relUrl !== '/#/admin/modifyUser') {
-      //   this.$router.push('/admin/modifyUser')
-      // } else if (index === '1-3' && relUrl !== '/#/admin/shoppingCart') {
-      //   this.$router.push('/admin/shoppingCart')
-      // } else if (index === '2-1' && relUrl !== '/#/admin/lookOrder') {
-      //   this.$router.push('/admin/lookOrder')
-      // } else if (index === '2-2' && relUrl !== '/#/admin/modifyOrder') {
-      //   this.$router.push('/admin/modifyOrder')
-      // } else if (index === '3-1' && relUrl !== '/#/admin/addRating') {
-      //   this.$router.push('/admin/addRating')
-      // } else if (index === '3-2' && relUrl !== '/#/admin/lookRating') {
-      //   this.$router.push('/admin/lookRating')
-      // } else if (index === '4-1' && relUrl !== '/#/admin/addGood') {
-      //   this.$router.push('/admin/addGood')
-      // } else if (index === '4-2' && relUrl !== '/#/admin/lookGoodsManagement') {
-      //   this.$router.push('/admin/lookGoodsManagement')
-      // }
     },
     // 移除子标签
     handleTabRemove (index) {

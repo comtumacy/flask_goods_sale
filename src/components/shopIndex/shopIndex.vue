@@ -1,11 +1,18 @@
 <template>
   <div class="shopIndex">
-    <shopIndexHeader v-bind:width="width"></shopIndexHeader>
-    <shopIndexSearch v-bind:width="width"></shopIndexSearch>
+    <shopIndexHeader
+      v-bind:width="width"
+      v-bind:backColorWidth="backColorWidth">
+    </shopIndexHeader>
+    <shopIndexSearch
+      v-bind:width="width"
+      @forceSign="forceSignFun">
+    </shopIndexSearch>
     <shopIndexNavigation
       v-bind:width="width"
       v-bind:widthNow="widthNow"
       v-bind:activeIndex="sign"
+      v-bind:backColorWidth="backColorWidth"
       @selectNavigation1="selectNavigation1"
       @selectNavigation2="selectNavigation2"></shopIndexNavigation>
     <router-view
@@ -13,6 +20,8 @@
       v-bind:widthNow="widthNow"
       v-bind:selectNavigationSign1="selectNavigationSign1"
       v-bind:selectNavigationSign2="selectNavigationSign2"
+      v-bind:forceSignReturn="forceSignReturn"
+      v-bind:backColorWidth="backColorWidth"
       @signEdit="setSign">
     </router-view>
   </div>
@@ -37,9 +46,11 @@ export default {
     return {
       width: 0,
       widthNow: 0,
+      backColorWidth: 0,
       sign: '2',
       selectNavigationSign1: '',
-      selectNavigationSign2: ''
+      selectNavigationSign2: '',
+      forceSignReturn: ''
     }
   },
   computed: {},
@@ -56,6 +67,11 @@ export default {
         width = widthNow - 1200
       }
       this.width = width
+      if (widthNow < 1200) {
+        this.backColorWidth = 1200
+      } else {
+        this.backColorWidth = widthNow
+      }
     },
     // 设置标题信号值
     setSign (val) {
@@ -68,6 +84,10 @@ export default {
     // 最外层导航栏选择回调2
     selectNavigation2 (val) {
       this.selectNavigationSign2 = val
+    },
+    // 刷新信号
+    forceSignFun (val) {
+      this.forceSignReturn = val
     }
   },
   mounted () {

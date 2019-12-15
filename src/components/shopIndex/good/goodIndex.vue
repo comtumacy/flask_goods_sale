@@ -179,7 +179,7 @@ export default {
   computed: {
     // 获取商品ID
     getGoodID () {
-      return function (val) {
+      return function () {
         if (!this.data.goodsContent) {
           return ''
         } else {
@@ -528,8 +528,8 @@ export default {
     top 250px
     left 450px
     width 750px
-    height 30px
-    font-size 20px
+    height 34px
+    font-size 24px
     font-family Microsoft YaHei
     overflow hidden
     text-overflow ellipsis
@@ -682,12 +682,14 @@ export default {
     top 590px
     left 450px
     width 180px
+    font-size 16px
   .favoritesButton
     position absolute
     margin-left 225px
     top 590px
     left 450px
     width 180px
+    font-size 16px
   .goodIndexMenu
     top 700px
     > li
@@ -703,40 +705,49 @@ export default {
       padding-bottom 20px
       top 930px
       font-family Microsoft YaHei
+      font-size 16px
     .GoodWeight
       position absolute
       top 730px
       font-family Microsoft YaHei
+      font-size 16px
     .goodOpenBook
       position absolute
       top 730px
       font-family Microsoft YaHei
+      font-size 16px
     .goodPacking
       position absolute
       top 770px
       font-family Microsoft YaHei
+      font-size 16px
     .GoodFrom
       position absolute
       top 770px
       font-family Microsoft YaHei
+      font-size 16px
     .goodPaper
       position absolute
       top 810px
       font-family Microsoft YaHei
+      font-size 16px
     .goodSignal
       position absolute
       top 810px
       font-family Microsoft YaHei
+      font-size 16px
     .goodSuit
       position absolute
       padding-bottom 20px
       top 850px
       font-family Microsoft YaHei
+      font-size 16px
     .goodNewAndOldDegree
       position absolute
       padding-bottom 20px
       top 890px
       font-family Microsoft YaHei
+      font-size 16px
   .goodRatings
     margin-left 10px
     .goodRating
@@ -748,15 +759,19 @@ export default {
       .goodRatingUser
         position absolute
         margin-left 85px
+        font-size 16px
       .goodRatingStar
         position absolute
         margin-left 85px
+        font-size 16px
       .goodTime
         position absolute
         right 0
+        font-size 16px
       .goodText
         position absolute
         margin-left 80px
         overflow hidden
-        height 65px
+        height 70px
+        font-size 16px
 </style>

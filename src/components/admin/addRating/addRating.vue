@@ -2,7 +2,7 @@
   <div class="addRating" v-loading="loading">
     <el-row class="addRatingHeader">
       <span class="icon-pacman"></span>
-      <span class="addRatingHeaderText">评论添加</span>
+      <span v-admin-header-text>评论添加</span>
     </el-row>
     <div class="addRatingTable">
       <div v-bind:style="{'background-color': 'white'}">
@@ -249,11 +249,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .addRatingHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .addRatingTable
     position absolute
     margin-left 10px

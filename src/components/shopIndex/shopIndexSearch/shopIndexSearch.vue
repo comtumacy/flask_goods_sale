@@ -9,18 +9,22 @@
         </el-col>
         <el-col id="shopIndexSearchInput">
           <div style="margin-top: 15px;">
-            <el-input placeholder="请输入内容" v-model="input" class="input-with-select">
+            <el-input placeholder="请输入商品名称或书籍ISBN编号" v-model="input" class="input-with-select">
               <el-select v-model="select" slot="prepend" placeholder="类型">
-                <el-option label="闲置书籍" value="闲置书籍"></el-option>
-                <el-option label="闲置手机" value="闲置手机"></el-option>
+                <el-option label="闲置书籍" value="1"></el-option>
+                <el-option label="闲置手机" value="2"></el-option>
               </el-select>
               <el-button slot="append" icon="el-icon-search" v-bind:style="{'padding': '9px 17px 9px 17px'}" v-on:click="search()"></el-button>
             </el-input>
           </div>
           <div>
             <span id="hotSearch">热搜：</span>
-            <el-button type="text" v-bind:style="{'margin-left': '10px', 'color': 'rgb(150,150,150)'}" v-on:click="gotoGoodPage(1)">书籍</el-button>
-            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="gotoGoodPage(2)">手机</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '10px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch1('球')">球类书籍</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch1('套装')">套装</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch2('vivo')">vivo</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch2('oppo')">oppo</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch2('华为')">华为</el-button>
+            <el-button type="text" v-bind:style="{'margin-left': '20px', 'color': 'rgb(150,150,150)'}" v-on:click="enterSearch2('小米')">小米</el-button>
           </div>
         </el-col>
         <el-col>
@@ -57,29 +61,57 @@ export default {
       return require('./photo.jpg')
     },
     // 进入商品详情页
-    gotoGoodPage (val) {
-      let url = document.location.toString()
-      let arrUrl = url.split('//')
-      let start = arrUrl[1].indexOf('/')
-      let relUrl = arrUrl[1].substring(start)
-      if (val === 1 && relUrl !== '/#/shopIndex/shopBook') {
-        this.$router.push('/shopIndex/shopBook')
-      } else if (val === 2 && relUrl !== '/#/shopIndex/shopPhone') {
-        this.$router.push('/shopIndex/shopPhone')
-      }
+    enterSearch1 (val) {
+      this.input = val
+      this.select = '1'
+      this.search()
+    },
+    // 进入商品详情页
+    enterSearch2 (val) {
+      this.input = val
+      this.select = '2'
+      this.search()
     },
     // 搜索内容
     search () {
-      let url = document.location.toString()
-      let arrUrl = url.split('//')
-      let start = arrUrl[1].indexOf('/')
-      let relUrl = arrUrl[1].substring(start)
-      if (this.input === '闲置书籍' && relUrl !== '/#/shopIndex/shopBook') {
-        this.$router.push('/shopIndex/shopBook')
-      } else if (this.input === '闲置手机' && relUrl !== '/#/shopIndex/shopPhone') {
-        this.$router.push('/shopIndex/shopPhone')
+      if (this.input === '') {
+        this.$message.error('请输入需要搜索的内容')
+      } else if (this.select === '') {
+        this.$message.error('请选择搜索的类型')
       } else {
-        this.$message.error('未搜索到任何内容')
+        this.$axios({
+          method: 'post',
+          url: 'https://yitongli.cn/goodsApi/public/search_good',
+          data: {
+            'type': parseInt(this.select),
+            'content': this.input,
+            'pageNum': 1
+          }
+        }).then(res => {
+          if (res.status === 200) {
+            if (res.data.pageNumber === 0) {
+              this.$message.success('未搜索到任何数据')
+            } else {
+              this.$message.success(`搜索出${res.data.pageNumber}条数据`)
+              this.$store.dispatch('search_good_actions', res.data)
+              let url = document.location.toString()
+              let arrUrl = url.split('//')
+              let start = arrUrl[1].indexOf('/')
+              let relUrl = arrUrl[1].substring(start)
+              if (this.select === '1' && relUrl !== '/#/shopIndex/shopBook') {
+                this.$router.push('/shopIndex/shopBook')
+              } else if (this.select === '1' && relUrl === '/#/shopIndex/shopBook') {
+                this.$emit('forceSign', this.input)
+              } else if (this.select === '2' && relUrl !== '/#/shopIndex/shopPhone') {
+                this.$router.push('/shopIndex/shopPhone')
+              } else if (this.select === '2' && relUrl === '/#/shopIndex/shopPhone') {
+                this.$emit('forceSign', this.input)
+              }
+            }
+          } else {
+            this.$message.error(res.data.info)
+          }
+        })
       }
     }
   },
@@ -108,6 +140,8 @@ export default {
     #shopIndexSearchLogo
       height 100px
     #shopIndexSearchInput
+      position absolute
+      left 240px
       margin-left 100px
       width 600px
       .input-with-select
@@ -115,7 +149,12 @@ export default {
           width 70px
           border 2px solid rgb(180,181,62)
           border-right 0
+          .el-select
+            .el-input
+              .el-input__inner
+                width 100px
         .el-input__inner
+          width 100%
           border 2px solid rgb(180,181,62)
           border-left 0
           border-right 0

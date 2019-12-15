@@ -2,9 +2,9 @@
     <div class="shoppingCart" v-loading="loading">
       <el-row class="shoppingCartHeader">
         <span class="el-icon-shopping-cart-full"></span>
-        <span class="shoppingCartHeaderText">购物车</span>
+        <span v-admin-header-text>购物车</span>
       </el-row>
-      <div class="shoppingCartTable">
+      <div class="shoppingCartTable" v-bind:style="{'height': tableHeightNow + 'px'}">
         <div v-bind:style="{'background-color': 'white'}">
           <el-table
             :data="data"
@@ -96,7 +96,7 @@
 export default {
   name: 'shoppingCart',
   components: {},
-  props: ['widthNow'],
+  props: ['widthNow', 'tableHeightNow'],
   created () {
     this.getContent()
   },
@@ -235,15 +235,11 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .shoppingCartHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .shoppingCartTable
     position absolute
     margin-left 10px
     top 70px
+    overflow auto
     .el-table
       .shoppingCartHeaderTextImg
         width 100px

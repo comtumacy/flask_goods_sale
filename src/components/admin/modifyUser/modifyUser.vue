@@ -2,8 +2,8 @@
   <div class="modifyUser" v-loading="loading">
     <el-row class="modifyUserHeader">
       <span class="el-icon-user"></span>
-      <span class="modifyUserText">信息修改</span>
-      <div class="modifyTable">
+      <span v-admin-header-text>信息修改</span>
+      <div class="modifyTable" v-bind:style="{'height': modifyUserHeightNow + 'px', 'margin-left': (widthNow * 0.2083) + 'px'}">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
           <el-row>
             <el-form-item label="性别" prop="sex">
@@ -60,7 +60,7 @@
 export default {
   name: 'modifyUser',
   components: {},
-  props: ['widthNow'],
+  props: ['widthNow', 'modifyUserHeightNow'],
   created () {
     this.getInfo()
   },
@@ -217,16 +217,33 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .modifyUserText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
+    /*滚动条整体样式*/
+    /*.modifyTable::-webkit-scrollbar {*/
+    /*  width 0.7rem*/
+    /*  background-color #f5f5f5*/
+    /*}*/
+    /* 定义滚动条轨道  内阴影+圆角*/
+    /*.modifyTable::-webkit-scrollbar-track {*/
+    /*  -webkit-box-shadow inset 0 0 6px rgba(0, 0, 0, 0.3)*/
+    /*  border-radius 20px*/
+    /*  background-color #ffffff*/
+    /*}*/
+    /*滚动条里面小方块*/
+    /*.modifyTable::-webkit-scrollbar-thumb {*/
+    /*  border-radius 5px*/
+    /*  -webkit-box-shadow inset 0 0 6px rgba(0, 0, 0, 0.3)*/
+    /*  background-color rgb(199,199,199)*/
+    /*}*/
+    /*.modifyTable::-webkit-scrollbar-thumb:hover {*/
+    /*  background-color rgba(95, 95, 95, 0.7)*/
+    /*}*/
     .modifyTable
       position absolute
-      margin-left 400px
+      padding-right 10px
       margin-top 120px
       width 600px
+      overflow-y auto
+      overflow-x hidden
     .modifyUserButton
       position absolute
       margin-left 100px

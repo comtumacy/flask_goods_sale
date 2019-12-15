@@ -1,7 +1,7 @@
 <template>
-    <div class="shopIndexBottom">
+    <div class="shopIndexBottom" v-bind:style="{'width': backColorWidth + 'px'}">
       <div class="shopIndexBottom1" v-bind:style="{'margin-left': (width / 2) + 'px', 'margin-right': (width / 2) + 'px',}">
-        <el-row>
+        <el-row v-bind:style="{'width': '1200px'}">
           <el-col>
             <el-row>
               <img :src="getLogoPhoto()">
@@ -17,7 +17,7 @@
             <span>商家服务</span>
           </el-col>
         </el-row>
-        <el-row v-bind:style="{'position': 'absolute', 'top': '65px'}">
+        <el-row v-bind:style="{'position': 'absolute', 'top': '65px', 'width': '1200px'}">
           <el-col class="shopIndexBottomTitle4" v-on:click.native="goToAdmin()">
             <span>买家登录</span>
           </el-col>
@@ -28,7 +28,7 @@
             <span>后台登录</span>
           </el-col>
         </el-row>
-        <el-row v-bind:style="{'position': 'absolute', 'top': '95px'}">
+        <el-row v-bind:style="{'position': 'absolute', 'top': '95px', 'width': '1200px'}">
           <el-col class="shopIndexBottomTitle4" v-on:click.native="goToAdmin()">
             <span>订单管理</span>
           </el-col>
@@ -39,14 +39,19 @@
             <span>联系我们</span>
           </el-col>
         </el-row>
-        <el-row v-bind:style="{'position': 'absolute', 'top': '125px'}">
+        <el-row v-bind:style="{'position': 'absolute', 'top': '125px', 'width': '1200px'}">
           <el-col class="shopIndexBottomTitle4" v-on:click.native="goToModify()">
             <span>账号修改</span>
           </el-col>
         </el-row>
       </div>
       <div class="shopIndexBottom2">
-        <span class="shopIndexBottom2Title">© 2019 闲置商品交易网 黎一童</span>
+        <el-row>
+          <span class="shopIndexBottom2Title">© 2019 闲置商品交易网 黎一童</span>
+        </el-row>
+        <el-row>
+          <span class="shopIndexBottom3Title" v-on:click="goToBei()">桂ICP备18010006号-1</span>
+        </el-row>
       </div>
     </div>
 </template>
@@ -55,7 +60,7 @@
 export default {
   name: 'shopIndexBottom',
   components: {},
-  props: ['width'],
+  props: ['width', 'backColorWidth'],
   created () {
     this.getLogoPhoto()
   },
@@ -84,6 +89,10 @@ export default {
     // 进入账号修改
     goToModify () {
       this.$router.push('/admin/modifyUser')
+    },
+    // 进入备案网站
+    goToBei () {
+      window.open('http://beian.miit.gov.cn')
     }
   },
   mounted () {
@@ -106,6 +115,7 @@ export default {
   height 200px
   background-color rgb(242,242,242)
   .shopIndexBottom1
+    height 160px
     .el-row
       .el-col
         width auto
@@ -145,12 +155,19 @@ export default {
         cursor pointer
   .shopIndexBottom2
     position absolute
-    bottom 0
     width 100%
-    height 40px
+    height 55px
     text-align center
     background-color rgb(94,97,106)
     .shopIndexBottom2Title
       position relative
       top 10px
+      color white
+    .shopIndexBottom3Title:hover
+      color rgb(242,242,242)
+    .shopIndexBottom3Title
+      position relative
+      top 12px
+      color white
+      cursor pointer
 </style>

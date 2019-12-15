@@ -2,7 +2,7 @@
   <div class="lookOrder" v-loading="loading">
     <el-row class="lookOrderHeader">
       <span class="el-icon-shopping-bag-1"></span>
-      <span class="lookOrderHeaderText">订单查看</span>
+      <span v-admin-header-text>订单查看</span>
     </el-row>
     <div class="lookOrderTable">
       <div v-bind:style="{'background-color': 'white'}">
@@ -241,11 +241,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .lookOrderHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .lookOrderTable
     position absolute
     margin-left 10px

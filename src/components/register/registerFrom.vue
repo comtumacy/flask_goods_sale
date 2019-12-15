@@ -239,5 +239,6 @@ export default {
     margin-left 100px
   .registerButton
     margin-left 100px
+    margin-bottom 20px
     width 500px
 </style>

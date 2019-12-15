@@ -16,7 +16,11 @@
       <el-menu-item index="手机">手机</el-menu-item>
       <el-menu-item index="test" v-show="false">test</el-menu-item>
     </el-menu>
-    <shopPhoneDetailed  v-bind:width="width" v-bind:selectNow="selectNow" v-bind:widthNow="widthNow"></shopPhoneDetailed>
+    <shopPhoneDetailed
+      v-bind:width="width"
+      v-bind:selectNow="selectNow"
+      v-bind:widthNow="widthNow"
+      v-bind:forceSignReturn="forceSignReturn"></shopPhoneDetailed>
   </div>
 </template>
 
@@ -27,7 +31,7 @@ export default {
   components: {
     shopPhoneDetailed
   },
-  props: ['width', 'widthNow', 'selectNavigationSign2'],
+  props: ['width', 'widthNow', 'selectNavigationSign2', 'forceSignReturn'],
   created () {
     this.$emit('signEdit', '4')
   },

@@ -2,7 +2,7 @@
     <div class="addGood" v-loading="loading">
       <el-row class="addGoodHeader">
         <span class="icon-box-add"></span>
-        <span class="addGoodHeaderText">商品添加</span>
+        <span v-admin-header-text>商品添加</span>
       </el-row>
       <div v-if="judgeUserSign">
         <div class="addGoodPhoto">
@@ -453,11 +453,6 @@ export default {
       left 20px
       top 20px
       font-size 22px
-    .addGoodHeaderText
-      position absolute
-      left 50px
-      top 17px
-      font-size 20px
   .addGoodPhoto
     position absolute
     left 80px
