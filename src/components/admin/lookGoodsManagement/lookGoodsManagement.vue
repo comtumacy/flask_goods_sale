@@ -1,7 +1,7 @@
 <template>
   <div class="lookGoodsManagement" v-loading="loading">
     <el-row class="lookGoodsManagementHeader">
-      <span class="icon-pie-chart"></span>
+      <span class="icon-folder-download"></span>
       <span v-admin-header-text>库存查看</span>
     </el-row>
     <div class="lookGoodsManagementTable" v-if="judgeUserSign">
@@ -158,7 +158,7 @@ export default {
     cursor default
     background-color white
     box-shadow 0 5px 5px -5px #888888
-    .icon-pie-chart
+    .icon-folder-download
       position absolute
       left 20px
       top 20px

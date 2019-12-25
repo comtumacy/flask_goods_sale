@@ -22,12 +22,18 @@ import { Icon, Button, Row, Col, Divider, Container, Aside, Main, Form, FormItem
 import { Tabs, TabPane } from 'view-design'
 // 导入iView UI
 import 'view-design/dist/styles/iview.css'
+// 导入eCharts
+import eCharts from 'echarts'
 
+// 开发模式
 Vue.config.productionTip = false
 // 定义全局变量axIos
 Vue.prototype.$axios = axIos
 // 定义全局变量md5
 Vue.prototype.$md5 = md5
+// 导入eCharts
+Vue.prototype.$echarts = eCharts
+// Element UI全局组件挂载
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm

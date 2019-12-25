@@ -53,6 +53,7 @@
             </template>
             <el-menu-item index="addGoodSign">商品添加</el-menu-item>
             <el-menu-item index="lookGoodsManagementSign">库存查看</el-menu-item>
+            <el-menu-item index="lookReportsSign">报表查看</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-row>
@@ -111,6 +112,11 @@
               v-bind:widthNow="widthNow"
               v-bind:heightNow="heightNow"></lookGoodsManagement>
           </TabPane>
+          <TabPane label="报表查看" v-if="lookReportsSign" name="lookReportsSign" v-bind:style="{'height': contentHeight + 'px'}">
+            <lookReports
+              v-bind:widthNow="widthNow"
+              v-bind:heightNow="heightNow"></lookReports>
+          </TabPane>
         </Tabs>
       </div>
     </div>
@@ -126,6 +132,7 @@ import lookRating from './lookRating/lookRating'
 import modifyOrder from './modifyOrder/modifyOrder'
 import modifyUser from './modifyUser/modifyUser'
 import shoppingCart from './shoppingCart/shoppingCart'
+import lookReports from './lookReports/lookReports'
 export default {
   name: 'adminIndex',
   components: {
@@ -137,7 +144,8 @@ export default {
     lookRating,
     modifyOrder,
     modifyUser,
-    shoppingCart
+    shoppingCart,
+    lookReports
   },
   props: [],
   created () {
@@ -163,6 +171,7 @@ export default {
       modifyOrderSign: false,
       modifyUserSign: false,
       shoppingCartSign: false,
+      lookReportsSign: false,
       tabValue: 'favoritesSign'
     }
   },
@@ -230,6 +239,8 @@ export default {
         this.modifyUserSign = true
       } else if (index === 'shoppingCartSign') {
         this.shoppingCartSign = true
+      } else if (index === 'lookReportsSign') {
+        this.lookReportsSign = true
       }
     },
     // 移除子标签
@@ -252,6 +263,8 @@ export default {
         this.modifyUserSign = false
       } else if (index === 'shoppingCartSign') {
         this.shoppingCartSign = false
+      } else if (index === 'lookReportsSign') {
+        this.lookReportsSign = false
       }
     }
   },
